@@ -1,0 +1,30 @@
+#
+# esquema de .htaccess per subdirectori cgi i d'altres que pengin d'aquest que no siguin intranet (dintre del sub) 
+# cal descomentar les linies que calguin despres de especificar el que vulguem
+#
+# 1: restringir les ips que hi accedeixen a tot segons el method
+# <Limit GET POST>
+# order deny,allow
+# deny from all
+# allow from 161.116.xxx.xxx 161.116.yyy.yyy
+# </Limit>
+# 
+# 2: restringir les ips que hi accedeixen segons extensio del fitxer
+# <Files ~ "\.pl$">
+#         order deny,allow
+#       deny from all
+#         allow from 161.116.xxx.xxx 161.116.yyy.yyy
+# </Files>
+# 
+# 3: aplicar autentificacio via fitxer d'usuaris amb password creat via htpasswd
+# AuthType Basic
+# AuthName "Etiqueta de la finestra d'autentificacio de l'aplicacio"
+# AuthUserFile "fitxer.pw"
+# Require valid-user
+#
+# 4: aplicar autentificacio via ldap
+#      AuthType UB
+#      Require valid-user
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]

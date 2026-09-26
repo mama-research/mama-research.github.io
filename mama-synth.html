@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <meta name="description" content="MAMA-SYNTH Challenge - Synthesizing Virtual Contrast-Enhancement in Breast MRI. A MICCAI 2026 challenge focused on generative models for contrast-reduced breast MRI protocols.">
+    <meta name="keywords" content="breast MRI, contrast enhancement, generative models, medical imaging, MICCAI, deep learning">
+    <meta name="author" content="MAMA-SYNTH">
+    <meta name="robots" content="index, follow">
+    <meta name="goatcounter" content="https://mama-synth.goatcounter.com/count">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mama-synth.com/">
+    <meta property="og:title" content="MAMA-SYNTH Challenge | MICCAI 2026">
+    <meta property="og:description" content="Synthesizing Virtual Contrast-Enhancement in Breast MRI">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mama-synth.com/">
+    <meta property="twitter:title" content="MAMA-SYNTH Challenge | MICCAI 2026">
+    <meta property="twitter:description" content="Synthesizing Virtual Contrast-Enhancement in Breast MRI">
+    
+    <title>MAMA-SYNTH Challenge | MICCAI 2026</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/mama-breastmark-logo.svg">
+    
+    <!-- Google Fonts - MAMA-MIA Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- PDF.js for Gadolinium Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Responsive Enhancements -->
+    <link rel="stylesheet" href="css/responsive-enhancements.css">
+    
+    <!-- Perfusion Background Integration Styles -->
+    <style>
+        /* Ensure all content appears above the perfusion background */
+        header, main, footer {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Transparent body to show animated background */
+        body {
+            background: transparent;
+        }
+
+        /* Podium hover glow */
+        .podium-block {
+            transition: box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+            cursor: default;
+        }
+        .podium-block:hover {
+            box-shadow: 0 0 28px rgba(0, 255, 255, 0.45), 0 0 8px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.7) !important;
+            background: rgba(0, 255, 255, 0.18) !important;
+        }
+        .podium-item {
+            transition: transform 0.3s ease;
+        }
+        .podium-item:hover {
+            transform: translateY(-6px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Perfusion Background Animation Container -->
+    <div id="perfusion-bg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
+
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header & Navigation -->
+    <header role="banner">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html" class="logo" aria-label="MAMA Challenges Home">
+                    <img src="images/mama-breastmark-logo.svg" alt="MAMA logo" class="site-logo-icon" width="34" height="34">
+                    <span>MAMA Research</span>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle button -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+            
+            <!-- Top-level navigation -->
+            <nav role="navigation" aria-label="Main navigation" class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-tab">About</a></li>
+                    <li><a href="mama-synth.html" class="nav-tab active">MAMA-SYNTH Challenge 2026</a></li>
+                    <li><a href="https://www.ub.edu/mama-mia/" class="nav-tab" target="_blank" data-force-new-tab="true">MAMA-MIA Challenge 2025 <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="https://www.synapse.org/Synapse:syn60868042/wiki/628716" class="nav-tab" target="_blank">MAMA-MIA Dataset <span aria-hidden="true">↗</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Secondary navigation for MAMA-SYNTH Challenge -->
+        <div class="secondary-nav-container">
+            <nav role="navigation" aria-label="Challenge navigation" class="secondary-nav">
+                <ul>
+                    <li><a href="#goal">Context</a></li>
+                    <li><a href="#task">Task</a></li>
+                    <li><a href="#data">Data</a></li>
+                    <li><a href="#metrics">Evaluation</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#prizes">Awards</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#final-rankings" class="nav-results-cta">🏆 Results</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- MAMA-SYNTH Challenge 2026 Section -->
+        <section id="challenge" class="challenge-section">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="content-limit">
+                <h1>MAMA-SYNTH</h1>
+                <p>Synthesizing Virtual Contrast-Enhancement in Breast MRI</p>
+                <a href="https://mamasynth.grand-challenge.org/" class="btn" role="button">Participate on Grand Challenge</a>
+
+                <!-- Organizer Logos -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; margin-top: 2.2rem;">
+                    <a href="https://conferences.miccai.org/2026/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; opacity:0.85; transition:opacity 0.2s, filter 0.2s;" onmouseover="this.style.opacity='1';this.style.filter='drop-shadow(0 0 10px rgba(0,255,255,0.5))'" onmouseout="this.style.opacity='0.85';this.style.filter='none'">
+                        <img src="images/miccai2026-logo-france.png" alt="MICCAI 2026" style="height: 100px; width: auto;">
+                    </a>
+                    <a href="https://deep-breath-miccai.github.io/deepbreath-2026/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; opacity:0.85; transition:opacity 0.2s, filter 0.2s;" onmouseover="this.style.opacity='1';this.style.filter='drop-shadow(0 0 10px rgba(0,255,255,0.5))'" onmouseout="this.style.opacity='0.85';this.style.filter='none'">
+                        <img src="logos/Deep-Breath-logo.png" alt="Deep Breath Workshop" style="height: 100px; width: auto;">
+                    </a>
+                </div>
+
+                <!-- Quick Links -->
+                <!-- <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 5rem;">
+                    <a href="https://github.com/mama-research/mama-synth" target="_blank" rel="noopener"
+                       style="display:inline-flex; align-items:center; gap:0.45rem; color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.82rem; font-weight:500; letter-spacing:0.3px; transition:color 0.2s;"
+                       onmouseover="this.style.color='rgba(255,255,255,0.8)'"
+                       onmouseout="this.style.color='rgba(255,255,255,0.45)'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <span style="color:rgba(255,255,255,0.2); font-size:0.82rem;">·</span>
+                    <a href="https://www.synapse.org/Synapse:syn60868042/wiki/628716" target="_blank" rel="noopener"
+                       style="display:inline-flex; align-items:center; gap:0.45rem; color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.82rem; font-weight:500; letter-spacing:0.3px; transition:color 0.2s;"
+                       onmouseover="this.style.color='rgba(255,255,255,0.8)'"
+                       onmouseout="this.style.color='rgba(255,255,255,0.45)'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </a>
+                </div> -->
+
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="goal" class="section-wrapper bg-dark">
+            <div class="content-limit">
+                <h2>Context</h2>
+                <p>Dynamic contrast-enhanced MRI (DCE-MRI) plays a central role in breast cancer management, but its reliance on gadolinium-based contrast agents raises various concerns. MAMA-SYNTH introduces a standardized, clinically informed benchmark for evaluating generative models, with the goal of advancing the development of <span style="color: #00ffff;">contrast-reduced </span> and <span style="color: #00ffff;">contrast-free</span> breast MRI protocols.</p>
+                
+                <!-- Why Gadolinium Matters Section -->
+                <!-- <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(0, 255, 255, 0.2);"> -->
+                    <span style="font-size: 1.2rem; margin-bottom: 2rem; color: #00ffff; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Why?</span>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                        <!-- Example 1: Neurotoxicity and NSF -->
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+                            <!-- Glowy Blue Keyboard Key Visual -->
+                            <div style="position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; perspective: 1000px;">
+                                <div style="
+                                    position: relative;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: linear-gradient(135deg, #0088ff 0%, #00ccff 50%, #00ff88 100%);
+                                    border-radius: 12px;
+                                    box-shadow: 
+                                        0 8px 0 rgba(0, 100, 200, 0.6),
+                                        0 8px 15px rgba(0, 200, 255, 0.4),
+                                        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                                        inset 0 -2px 5px rgba(0, 0, 0, 0.3),
+                                        0 0 30px rgba(0, 200, 255, 0.8),
+                                        0 0 50px rgba(0, 150, 255, 0.5);
+                                    transform: translateY(-2px);
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    font-weight: 700;
+                                ">
+                                    <!-- Superscript 4 in top right -->
+                                    <div style="position: absolute; top: 8px; left: 12px; font-size: 0.8rem; color: #ffffff; opacity: 0.9; font-weight: 600;">64</div>
+                                    
+                                    <!-- Gd main text -->
+                                    <div style="font-size: 3.5rem; color: #ffffff; line-height: 1; text-shadow: 0 0 20px rgba(0, 100, 255, 0.8); margin-bottom: 0.2rem;">Gd</div>
+                                    
+                                    <!-- Gadolinium label -->
+                                    <div style="font-size: 0.65rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(0, 100, 255, 0.6);">Gadolinium</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Content -->
+                            <div style="text-align: center;">
+                                <h4 style="color: #00ffff; font-size: 1.1rem; margin-bottom: 0.8rem;">Side Effects</h4>
+                                <!-- <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.8);">
+                                    Gadolinium deposits, even from chelated agents, can lead to <a href="https://link.springer.com/article/10.1007/s10534-016-9931-7" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;" target="_blank">long-term accumulation, potential neurotoxicity and trigger nephrogenic systemic fibrosis</a>.
+                                </p> -->
+                            </div>
+                        </div>
+                        
+                        <!-- Example 2: Water Contamination -->
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+                            <!-- Icon placeholder -->
+                            <div style="width: 140px; height: 140px; background: linear-gradient(135deg, rgba(0, 200, 255, 0.2) 0%, rgba(0, 150, 200, 0.2) 100%); border: 2px solid #00ccff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: 0 0 30px rgba(0, 200, 255, 0.5); padding: 1rem; text-align: center;">
+                                💧
+                            </div>
+                            
+                            <!-- Content -->
+                            <div style="text-align: center;">
+                                <h4 style="color: #00ffff; font-size: 1.1rem; margin-bottom: 0.8rem;">Contamination</h4>
+                                <!-- <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.8);">
+                                    Gadolinium is <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7256513/" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;" target="_blank">detected in drinking water supplies worldwide</a> and <a href="https://www.sciencedirect.com/science/article/pii/S0308814625032042" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;" target="_blank">beverages</a>, raising concerns about long-term exposure and environmental health impacts.
+                                </p> -->
+                            </div>
+                        </div>
+                        
+                        <!-- Example 3: Cost and Accessibility -->
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+                            <!-- Icon placeholder -->
+                            <div style="width: 140px; height: 140px; background: linear-gradient(135deg, rgba(0, 200, 255, 0.2) 0%, rgba(0, 150, 200, 0.2) 100%); border: 2px solid #00ccff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: 0 0 30px rgba(0, 200, 255, 0.5); padding: 1rem; text-align: center;">
+                                💰
+                            </div>
+                            
+                            <!-- Content -->
+                            <div style="text-align: center;">
+                                <h4 style="color: #00ffff; font-size: 1.1rem; margin-bottom: 0.8rem;">Accessibility</h4>
+                                <!-- <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.8);">
+                                    Gadolinium contrast agents significantly increase the cost of MRI examinations, limiting accessibility in resource-constrained settings.
+                                </p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gadolinium Carousel Section
+        <section id="gadolinium-carousel" class="section-wrapper bg-dark"> -->
+            <div class="content-limit">
+                <p style="color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:2.5rem; font-size:0.97rem; text-align:center;">
+                   <b><i>Swipe to take a deeper dive.</i></b>
+                </p>
+                
+                <div class="gad-carousel">
+                    <div class="gad-carousel-viewport">
+                        <canvas id="pdf-render"></canvas>
+                        <div class="gad-carousel-loader" id="gad-pdf-loader">
+                            <div class="gad-loader-spinner"></div>
+                            <span>Loading PDF…</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gad-carousel-controls">
+                        <button id="prev-page" class="gad-btn" aria-label="Previous page">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                            <span>Prev</span>
+                        </button>
+                        <span class="gad-page-info">
+                            Page <span id="page-num">—</span> of <span id="page-count">—</span>
+                        </span>
+                        <button id="next-page" class="gad-btn" aria-label="Next page">
+                            <span>Next</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        <!-- </section> -->
+
+        <!-- Carousel Styling + Script -->
+        <style>
+            .gad-carousel {
+                max-width: 820px;
+                margin: 0 auto;
+                background: rgba(10, 14, 39, 0.75);
+                border: 1px solid rgba(0, 255, 255, 0.2);
+                border-radius: 14px;
+                padding: 1.75rem 1.75rem 1.5rem;
+                box-shadow: 0 0 30px rgba(0, 255, 255, 0.08);
+                transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            }
+            .gad-carousel:hover {
+                border-color: rgba(0, 255, 255, 0.4);
+                box-shadow: 0 0 40px rgba(0, 255, 255, 0.15);
+            }
+            .gad-carousel-viewport {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 200px;
+            }
+            #pdf-render {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+                display: block;
+            }
+            .gad-carousel-loader {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                color: rgba(0, 255, 255, 0.6);
+                font-size: 0.9rem;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                background: rgba(10, 14, 39, 0.7);
+                border-radius: 8px;
+                transition: opacity 0.5s ease;
+                pointer-events: none;
+            }
+            .gad-carousel-loader.gad-hidden {
+                opacity: 0;
+            }
+            .gad-loader-spinner {
+                width: 36px;
+                height: 36px;
+                border: 3px solid rgba(0, 255, 255, 0.15);
+                border-top-color: #00ffff;
+                border-radius: 50%;
+                animation: gad-spin 0.8s linear infinite;
+            }
+            @keyframes gad-spin {
+                to { transform: rotate(360deg); }
+            }
+            .gad-carousel-controls {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 1.25rem;
+                gap: 1rem;
+            }
+            .gad-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.6rem 1.25rem;
+                background: rgba(0, 255, 255, 0.08);
+                color: #00ffff;
+                border: 1px solid rgba(0, 255, 255, 0.25);
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 0.85rem;
+                font-weight: 600;
+                font-family: 'Montserrat', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            }
+            .gad-btn:hover:not(:disabled) {
+                background: rgba(0, 255, 255, 0.18);
+                border-color: rgba(0, 255, 255, 0.6);
+                box-shadow: 0 0 16px rgba(0, 255, 255, 0.25);
+            }
+            .gad-btn:disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+            .gad-page-info {
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+            .gad-page-info span {
+                color: rgba(0, 255, 255, 0.8);
+                font-weight: 700;
+            }
+            .gad-carousel-error {
+                color: #ff6b6b;
+                text-align: center;
+                padding: 2rem 1rem;
+                font-size: 0.9rem;
+            }
+        </style>
+
+        <script>
+            (function() {
+                'use strict';
+
+                var url = 'resources/MAMA-SYNTH-Gadolinium-Carousel.pdf';
+
+                var pdfDoc = null,
+                    pageNum = 1,
+                    pageRendering = false,
+                    pageNumPending = null;
+
+                // Increase scale for sharper rendering; cap viewport width to container
+                var scale = 1.5,
+                    canvas = document.getElementById('pdf-render'),
+                    ctx = canvas.getContext('2d'),
+                    loader = document.getElementById('gad-pdf-loader');
+
+                // Disable worker & range-requests so PDF.js works via file:// protocol
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                pdfjsLib.disableWorker = true;
+
+                function renderPage(num) {
+                    pageRendering = true;
+                    if (loader) loader.classList.remove('gad-hidden');
+
+                    pdfDoc.getPage(num).then(function(page) {
+                        // Calculate viewport — cap at canvas parent width to avoid overflow
+                        var container = canvas.parentElement;
+                        var maxWidth = container.clientWidth - 4; // 2px padding each side
+                        var vp = page.getViewport({ scale: scale });
+                        var s = Math.min(scale, maxWidth / vp.width);
+                        var viewport = page.getViewport({ scale: s });
+
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
+
+                        page.render({
+                            canvasContext: ctx,
+                            viewport: viewport
+                        }).promise.then(function() {
+                            pageRendering = false;
+                            if (loader) loader.classList.add('gad-hidden');
+
+                            if (pageNumPending !== null) {
+                                renderPage(pageNumPending);
+                                pageNumPending = null;
+                            }
+                        });
+
+                        document.getElementById('page-num').textContent = num;
+                        document.getElementById('prev-page').disabled = num <= 1;
+                        document.getElementById('next-page').disabled = num >= pdfDoc.numPages;
+                    });
+                }
+
+                function queueRenderPage(num) {
+                    if (pageRendering) {
+                        pageNumPending = num;
+                    } else {
+                        renderPage(num);
+                    }
+                }
+
+                function showPrevPage() {
+                    if (pageNum <= 1) return;
+                    pageNum--;
+                    queueRenderPage(pageNum);
+                }
+
+                function showNextPage() {
+                    if (pageNum >= pdfDoc.numPages) return;
+                    pageNum++;
+                    queueRenderPage(pageNum);
+                }
+
+                // Load the PDF — works reliably on both file:// and http://
+                function loadPDF(data) {
+                    pdfjsLib.getDocument({
+                        data: data,
+                        disableRange: true,
+                        disableStream: true,
+                        disableAutoFetch: false
+                    }).promise.then(function(pdfDoc_) {
+                        pdfDoc = pdfDoc_;
+                        document.getElementById('page-count').textContent = pdfDoc.numPages;
+                        renderPage(pageNum);
+                    }).catch(function(err) {
+                        if (loader) loader.classList.add('gad-hidden');
+                        var errDiv = document.createElement('div');
+                        errDiv.className = 'gad-carousel-error';
+                        errDiv.textContent = 'Failed to load PDF: ' + err.message;
+                        document.querySelector('.gad-carousel-viewport').appendChild(errDiv);
+                    });
+                }
+
+                // Fetch the file as ArrayBuffer (works with file:// in Firefox, Edge, and most browsers)
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'arraybuffer';
+                xhr.onload = function(e) {
+                    if (xhr.status === 0 || xhr.status === 200) {
+                        loadPDF(xhr.response);
+                    } else {
+                        if (loader) loader.classList.add('gad-hidden');
+                        var errDiv = document.createElement('div');
+                        errDiv.className = 'gad-carousel-error';
+                        errDiv.textContent = 'Failed to load PDF (HTTP ' + xhr.status + '). Try opening this page via a local server.';
+                        document.querySelector('.gad-carousel-viewport').appendChild(errDiv);
+                    }
+                };
+                xhr.onerror = function() {
+                    // XHR failed (common on Chromium file://) — try a static server hint
+                    if (loader) loader.classList.add('gad-hidden');
+                    var errDiv = document.createElement('div');
+                    errDiv.className = 'gad-carousel-error';
+                    errDiv.innerHTML = 'Unable to load the PDF via file:// protocol. ' +
+                        'Please start a local server and try again — or <a href="http://localhost:8080/mama-synth.html" style="color:#00ffff;">click here once the server is running</a>.';
+                    document.querySelector('.gad-carousel-viewport').appendChild(errDiv);
+                };
+                xhr.send();
+
+                document.getElementById('prev-page').addEventListener('click', showPrevPage);
+                document.getElementById('next-page').addEventListener('click', showNextPage);
+
+                // Re-render on resize so the canvas fits the container
+                var resizeTimer;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(function() {
+                        if (pdfDoc) renderPage(pageNum);
+                    }, 200);
+                });
+            })();
+        </script>
+        <!-- Task Section -->
+        <section id="task" class="section-wrapper bg-alt">
+            <div class="content-limit">
+                <h2>Task</h2>
+                <p>The task of the challenge is to synthesize 2D post-contrast breast DCE-MRI from corresponding pre-contrast DCE-MRI input. Participating algorithms operate on pre-contrast images where the malignant tumor is the largest and generate corresponding synthetic peak-enhanced post-contrast output.</p>
+                
+                <div class="image-comparison" style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 2rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <img src="images/pre-contrast.png" alt="Pre-contrast MRI" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);">
+                        <p style="color: #00ffff; font-weight: 700; margin-top: 1rem; text-transform: uppercase; letter-spacing: 1px; width: 100%; max-width: 350px;">Pre-contrast</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 0.5rem; gap: 0.5rem;">
+                        <div style="font-size: 2rem;">🤖</div>
+                        <div style="font-size: 5rem; background: linear-gradient(90deg, #00ffff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: flex; align-items: center; height: 100%; filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));">→</div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <img src="images/post-contrast.png" alt="Post-contrast MRI" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);">
+                        <p style="color: #ff00ff; font-weight: 700; margin-top: 1rem; text-transform: uppercase; letter-spacing: 1px; width: 100%; max-width: 350px;">Peak-enhancement</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Section -->
+        <section id="data" class="section-wrapper bg-dark">
+            <div class="content-limit">
+                <h2>Data</h2>
+                <p>The challenge utilizes diverse datasets to ensure algorithmic generalizability across different scanners and populations.</p>
+                
+                <!-- Training Dataset -->
+                <div style="margin-top: 3rem; margin-bottom: 3rem;">
+                    <h3 style="color: #00ffff; font-size: 1.3rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px;">Training Cohort: MAMA-MIA Dataset</h3>
+                    <p>This dataset contains pre-treatment DCE-MRI from 1,506 patients from 25 + centers across the United States. Access the complete dataset on <a href="https://www.synapse.org/Synapse:syn60868042/wiki/628716" target="_blank" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;">Synapse</a>. Key properties are shown below:</p>
+                    <br>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                        <!-- Acquisition Plane -->
+                        <div style="background: linear-gradient(135deg, rgba(0, 200, 255, 0.1) 0%, rgba(0, 150, 200, 0.1) 100%); border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 8px; padding: 1.5rem;">
+                            <h4 style="color: #00ffff; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;">Acquisition Plane</h4>
+                            <div style="margin-bottom: 0.8rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: rgba(255, 255, 255, 0.9);">Axial</span>
+                                    <span style="color: #00ffff; font-weight: 700;">84.4%</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 84.4%; height: 100%; background: linear-gradient(90deg, #0088ff, #00ffff); box-shadow: 0 0 10px rgba(0, 200, 255, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: rgba(255, 255, 255, 0.9);">Sagittal</span>
+                                    <span style="color: #00ffff; font-weight: 700;">15.6%</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 15.6%; height: 100%; background: linear-gradient(90deg, #8800ff, #ff00ff); box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Magnetic Field Strength -->
+                        <div style="background: linear-gradient(135deg, rgba(0, 200, 255, 0.1) 0%, rgba(0, 150, 200, 0.1) 100%); border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 8px; padding: 1.5rem;">
+                            <h4 style="color: #00ffff; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;">Magnetic Field Strength</h4>
+                            <div style="margin-bottom: 0.8rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: rgba(255, 255, 255, 0.9);">1.5T</span>
+                                    <span style="color: #00ffff; font-weight: 700;">72.1%</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 72.1%; height: 100%; background: linear-gradient(90deg, #0088ff, #00ffff); box-shadow: 0 0 10px rgba(0, 200, 255, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: rgba(255, 255, 255, 0.9);">3T</span>
+                                    <span style="color: #ff00ff; font-weight: 700;">27.9%</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 27.9%; height: 100%; background: linear-gradient(90deg, #8800ff, #ff00ff); box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Scanners  -->
+                        <div style="background: linear-gradient(135deg, rgba(0, 200, 255, 0.1) 0%, rgba(0, 150, 200, 0.1) 100%); border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 8px; padding: 1.5rem;">
+                            <h4 style="color: #00ffff; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;">Scanner Manufacturers</h4>
+                            <div style="margin-bottom: 0.8rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: rgba(255, 255, 255, 0.9);">GE</span>
+                                    <span style="color: #00ffff; font-weight: 700;">64.1%</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 64.1%; height: 100%; background: linear-gradient(90deg, #0088ff, #00ffff); box-shadow: 0 0 10px rgba(0, 200, 255, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 0.8rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: rgba(255, 255, 255, 0.9);">Siemens</span>
+                                    <span style="color: #ff00ff; font-weight: 700;">27.3%</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 27.3%; height: 100%; background: linear-gradient(90deg, #8800ff, #ff00ff); box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: rgba(255, 255, 255, 0.9);">Philips</span>
+                                    <span style="color: #00ccff; font-weight: 700;">8.6%</span>
+                                </div>
+                                <div style="width: 100%; height: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 8.6%; height: 100%; background: linear-gradient(90deg, #00ffff, #00ff88); box-shadow: 0 0 10px rgba(0, 200, 255, 0.6);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <p> 
+                        We note that participants are allowed to train their models on any further dataset, as long as said dataset is publicly available. 
+                        To ensure fair evaluation across participating teams, the usage of private data is not allowed in this challenge. 
+                        We further note that by participating in this challenge, participants agree to comply with
+                        <a href="https://www.presidency.ucsb.edu/documents/executive-order-14117-preventing-access-americans-bulk-sensitive-personal-data-and-united">EO 14117</a>,
+                        <a href="https://www.ecfr.gov/current/title-28/chapter-I/part-202">28 CFR Part 202</a>, and
+                        <a href="https://grants.nih.gov/grants/guide/notice-files/NOT-OD-25-083.html">Guide Notice NOT-OD-25-083</a> 
+                        and acknowledge that the usage of <a href="https://grants.nih.gov/policy-and-compliance/policy-topics/sharing-policies/accessing-data/requirements">NIH Controlled-access Data Repositories (CADRs)</a> is prohibited in this challenge. 
+                    </p>
+                </div>
+                
+                <!-- Testing Datasets -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: #00ffff; font-size: 1.3rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Testing Cohorts</h3>
+
+                    <!-- Generic description -->
+                    <p style="color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 2.5rem; font-size: 0.97rem;">
+                        The test data were acquired from <b>two external centers</b> located in the Netherlands and Argentina. Each test case refers to a 2D slice extracted from a patient’s DCE scan.  <br><br>
+                        For each patient, the slice containing the largest malignant tumor area is selected from the peak enhancement phase.
+                        The peak-enhancement phase is defined as the time point with the highest signal intensity within the tumor region. Note that this conversion to two-dimensional slice requires normalization. The challenge opts for z-score normalization computed with the training dataset pre-contrast mean and standard deviation. The preprocessing scripts can be found on the <a href="https://github.com/mama-research/mama-synth/tree/master#1%EF%B8%8F%E2%83%A3-preprocessing" target="_blank" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;">MAMA-SYNTH repository</a>. <br><br>
+                        All test images are fat-suppressed and acquired in the axial plane. The main statistics are summarized below:</p>
+
+                    <!-- Per-center comparison table -->
+                    <div style="overflow-x:auto; margin-bottom:3rem;">
+                      <table class="data-compare-table">
+                        <thead>
+                          <tr>
+                            <th>Field</th>
+                            <th>Radboud UMC<br><span style="font-weight:400; font-size:0.8rem; opacity:0.75;">The Netherlands</span></th>
+                            <th>Instituto Alexander Fleming<br><span style="font-weight:400; font-size:0.8rem; opacity:0.75;">Argentina</span></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="dct-field">Number of Cases</td>
+                            <td>177</td>
+                            <td>94</td>
+                          </tr>
+                          <tr>
+                            <td class="dct-field">Image Dimension</td>
+                            <td>416 × 416 px</td>
+                            <td>512 × 512 px</td>
+                          </tr>
+                          <tr>
+                            <td class="dct-field">Contrast Agent</td>
+                            <td>DOTAREM (99%), GADOVIST (0.5%)</td>
+                            <td>DOTAREM, GADOVIST</td>
+                          </tr>
+                          <tr>
+                            <td class="dct-field">Manufacturer</td>
+                            <td>Siemens</td>
+                            <td>GE</td>
+                          </tr>
+                          <tr>
+                            <td class="dct-field">Magnetic Field Strength</td>
+                            <td>3T</td>
+                            <td>1.5T</td>
+                          </tr>
+                          <tr class="dct-subtype-header">
+                            <td class="dct-field" colspan="3">Molecular Subtype</td>
+                          </tr>
+                          <tr>
+                            <td class="dct-field dct-subtype-label">↳ Luminal</td>
+                            <td>165 (85.7 %)</td>
+                            <td>37 (37 %)</td>
+                          </tr>
+                          <tr>
+                            <td class="dct-field dct-subtype-label">↳ Triple Negative</td>
+                            <td>23 (9.4 %)</td>
+                            <td>30 (30 %)</td>
+                          </tr>
+                          <tr>
+                            <td class="dct-field dct-subtype-label">↳ Other</td>
+                            <td>12 (4.9 %)</td>
+                            <td>20 (20 %)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <!-- <div style="margin-bottom: 2.5rem;">
+                        <h4 style="color: #00ffff; font-size: 1.1rem; margin-bottom: 0.5rem;">Radboud University Medical Centre</h4>
+                        <p style="color: rgba(255, 255, 255, 0.75); font-size: 0.95rem; margin-bottom: 1.5rem; font-style: italic;">The Netherlands</p>
+                        <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7; margin-bottom: 1.5rem;">
+                            <strong>Dataset:</strong> 200 pre-contrast and 200 post-contrast DCE-MRI scans.
+                        </p>
+                    
+                        <div style="background: rgba(0, 200, 255, 0.1); border-left: 3px solid #00ffff; padding: 1.5rem; border-radius: 4px;">
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.8; margin: 0 0 1rem 0;">
+                                <strong>Acquisition Parameters:</strong><br>
+                                • Plane: Axial (99.5%), Unspecified (0.5%)<br>
+                                • Magnetic Field Strength: 3T (100%)<br>
+                                • Fat Suppression: Yes (100.0%)<br>
+                                • Scanner Manufacturers: Siemens (100%)<br>
+                                • Acquisition Protocol: t1_fl3d_tra_Dixon_W (100%)<br>
+                                • Contrast Agents: DOTAREM (99.0%), GADOVIST (0.5%), Unspecified (0.5%)<br>
+                                • Imaging Parameters: TR 5–10 ms, TE 2–5 ms, flip angle 8–15°, slice thickness ~1 mm<br>
+                                • Image Dimensions: 416×416 pixels (100.0%)<br>
+                                • Pixel Spacing: 0.8654–0.9615 mm (mean: 0.8689 mm, median: 0.8654 mm, SD: 0.0157 mm)<br>
+                                • Slice Thickness Distribution: 1.0 mm (65.7%), 1.1 mm (23%), 1.2 mm (9.0%), 1.3 mm (1.5%), 1.4 mm (1.0%)
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #ff00ff; font-size: 1.1rem; margin-bottom: 0.5rem;">Instituto Alexander Fleming</h4>
+                        <p style="color: rgba(255, 255, 255, 0.75); font-size: 0.95rem; margin-bottom: 1.5rem; font-style: italic;">Argentina</p>
+                        <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.7; margin-bottom: 1.5rem;">
+                            <strong>Dataset:</strong> 100 pre-contrast and 100 post-contrast DCE-MRI scans.
+                        </p>
+                    
+                        <div style="background: rgba(255, 0, 255, 0.1); border-left: 3px solid #ff00ff; padding: 1.5rem; border-radius: 4px;">
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.8; margin: 0;">
+                                <strong>Acquisition Parameters:</strong><br>
+                                • Plane: Axial<br>
+                                • Magnetic Field Strength: 1.5T<br>
+                                • Fat Suppression: Yes (FAT, FAT Classic, Spectral, Water)<br>
+                                • Scanner Manufacturer: GE<br>
+                                • Contrast Agents: DOTAREM, GADOVIST<br>
+                                • Imaging Parameters: TR 4.2 ms, TE 2 ms, flip angle 12°, slice thickness 1.1 mm<br>
+                                • Image Matrix: 512 × 512 pixels<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Evaluation Section -->
+        <section id="metrics" class="section-wrapper bg-dark">
+            <div class="content-limit">
+                <h2>Evaluation Framework</h2>
+                <p style="color:rgba(255,255,255,0.75); line-height:1.8; margin-bottom:3rem; font-size:0.97rem;">
+                    Submissions are evaluated across four metric groups spanning pixel-level fidelity, perceptual realism, diagnostic classification performance, and segmentation accuracy. Start evaluating your models locally following the instructions on the <a href="https://github.com/mama-research/mama-synth#2%EF%B8%8F%E2%83%A3-evaluation" target="_blank" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;">MAMA-SYNTH repository</a>.
+                </p>
+
+                <!-- ── Metric Groups ── -->
+
+                <!-- ══ Group 1: Image-to-Image Comparison ══ -->
+                <div class="metric-group">
+                    <div class="metric-group-heading">
+                        <span class="metric-group-num">Metric Group 1</span>
+                        Image-to-Image Comparison
+                    </div>
+                    <div class="metric-cards-grid">
+
+                    <!-- ① MSE -->
+                    <div class="metric-card">
+                        <div class="metric-card-visual mvis-mse" aria-hidden="true">
+                            <svg viewBox="0 0 145 90" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                <rect x="8"  y="8"  width="48" height="48" rx="3" fill="rgba(0,255,255,0.08)" stroke="#00ffff" stroke-width="1.2"/>
+                                <rect x="90" y="8"  width="48" height="48" rx="3" fill="rgba(237,25,237,0.08)" stroke="#ed19ed" stroke-width="1.2"/>
+                                <rect x="13" y="13" width="10" height="10" fill="rgba(0,255,255,0.55)" rx="1"/>
+                                <rect x="27" y="13" width="10" height="10" fill="rgba(0,255,255,0.35)" rx="1"/>
+                                <rect x="13" y="27" width="10" height="10" fill="rgba(0,255,255,0.25)" rx="1"/>
+                                <rect x="27" y="27" width="10" height="10" fill="rgba(0,255,255,0.65)" rx="1"/>
+                                <rect x="95" y="13" width="10" height="10" fill="rgba(237,25,237,0.45)" rx="1"/>
+                                <rect x="109" y="13" width="10" height="10" fill="rgba(237,25,237,0.65)" rx="1"/>
+                                <rect x="95" y="27" width="10" height="10" fill="rgba(237,25,237,0.35)" rx="1"/>
+                                <rect x="109" y="27" width="10" height="10" fill="rgba(237,25,237,0.25)" rx="1"/>
+                                <text x="32"  y="66" text-anchor="middle" fill="#00ffff" font-size="8" font-family="Montserrat,sans-serif">Ref</text>
+                                <text x="103" y="66" text-anchor="middle" fill="#ed19ed" font-size="8" font-family="Montserrat,sans-serif">Pred</text>
+                                <defs><marker id="arrowW" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0 0, 7 3.5, 0 7" fill="#ffffff"/></marker></defs>
+                                <line x1="58" y1="32" x2="77" y2="32" stroke="#ffffff" stroke-width="2.5" marker-end="url(#arrowW)"/>
+                                <text x="67"  y="80" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="Montserrat,sans-serif">(a−b)²</text>
+                            </svg>
+                        </div>
+                        <div class="metric-card-body">
+                            <div class="metric-card-header">
+                                <span class="metric-purpose-tag">Pixel Similarity</span>
+                            </div>
+                            <h3 class="metric-card-title">MSE <span class="metric-card-subtitle">Mean Squared Error</span></h3>
+                            <p class="metric-card-desc">
+                                MSE measures the average squared difference between each pixel in the synthesized output and its corresponding pixel in the ground-truth post-contrast image. Lower values indicate greater pixel-level fidelity.
+                            </p>
+                            <!-- <div class="metric-formula">
+                                MSE = <span class="mf-frac"><span class="mf-num">1</span><span class="mf-den">N</span></span> Σ (y<sub>i</sub> − ŷ<sub>i</sub>)<sup>2</sup>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- ② LPIPS -->
+                    <div class="metric-card">
+                        <div class="metric-card-visual mvis-lpips" aria-hidden="true">
+                            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                <rect x="6"  y="22" width="16" height="36" rx="2" fill="rgba(0,255,255,0.15)" stroke="#00ffff" stroke-width="1.2"/>
+                                <rect x="28" y="28" width="16" height="24" rx="2" fill="rgba(0,255,255,0.20)" stroke="#00ffff" stroke-width="1.2"/>
+                                <rect x="50" y="32" width="16" height="16" rx="2" fill="rgba(0,255,255,0.28)" stroke="#00ffff" stroke-width="1.2"/>
+                                <line x1="22" y1="40" x2="27" y2="40" stroke="#00ffff" stroke-width="1"/>
+                                <line x1="44" y1="40" x2="49" y2="40" stroke="#00ffff" stroke-width="1"/>
+                                <circle cx="88" cy="40" r="14" fill="rgba(237,25,237,0.12)" stroke="#ed19ed" stroke-width="1.5"/>
+                                <text x="88" y="37" text-anchor="middle" fill="#ed19ed" font-size="4" font-family="Montserrat,sans-serif">cosine</text>
+                                <text x="88" y="46" text-anchor="middle" fill="#ed19ed" font-size="4" font-family="Montserrat,sans-serif">distance</text>
+                                <line x1="66" y1="40" x2="73" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                                <text x="36" y="72" text-anchor="middle" fill="#00ffff" font-size="6.5" font-family="Montserrat,sans-serif">Deep Features</text>
+                                <text x="88" y="62" text-anchor="middle" fill="#ed19ed" font-size="6.5" font-family="Montserrat,sans-serif">Similarity</text>
+                            </svg>
+                        </div>
+                        <div class="metric-card-body">
+                            <div class="metric-card-header">
+                                <span class="metric-purpose-tag">Perceptual Similarity</span>
+                            </div>
+                            <h3 class="metric-card-title">LPIPS <span class="metric-card-subtitle">Learned Perceptual Image Patch Similarity</span></h3>
+                            <p class="metric-card-desc">
+                                LPIPS computes perceptual distance between images using deep network feature activations, capturing texture and structural similarity closer to human perception than pixel-wise metrics. Lower values indicate more realistic synthesis.
+                            </p>
+                        </div>
+                    </div>
+
+                    </div><!-- /metric-cards-grid -->
+                </div><!-- /metric-group 1 -->
+
+                <!-- ══ Group 2: ROI-to-ROI ══ -->
+                <div class="metric-group">
+                    <div class="metric-group-heading">
+                        <span class="metric-group-num">Metric Group 2</span>
+                        ROI-to-ROI Comparison
+                    </div>
+                    <div class="metric-cards-grid">
+
+                    <!-- ③ SSIM -->
+                    <div class="metric-card">
+                        <div class="metric-card-visual mvis-ssim" aria-hidden="true">
+                            <svg viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                <rect x="10" y="15" width="46" height="46" rx="3" fill="rgba(0,255,255,0.08)" stroke="#00ffff" stroke-width="1.3"/>
+                                <rect x="26" y="15" width="46" height="46" rx="3" fill="rgba(237,25,237,0.08)" stroke="#ed19ed" stroke-width="1.3"/>
+                                <rect x="26" y="15" width="30" height="46" rx="2" fill="rgba(0,255,255,0.1)" stroke="none"/>
+                                <rect x="30" y="25" width="18" height="5"  rx="1" fill="#00ffff" opacity="0.7"/>
+                                <rect x="30" y="35" width="12" height="5"  rx="1" fill="#ed19ed" opacity="0.7"/>
+                                <rect x="30" y="45" width="15" height="5"  rx="1" fill="rgba(255,255,255,0.5)"/>
+                                <text x="13"  y="75" fill="#00ffff"  font-size="9" font-family="Montserrat,sans-serif">Ref</text>
+                                <text x="60"  y="75" fill="#ed19ed"  font-size="9" font-family="Montserrat,sans-serif">Pred</text>
+                                <text x="92"  y="28" fill="#00ffff"  font-size="9" font-family="Montserrat,sans-serif">Luminance</text>
+                                <text x="92"  y="40" fill="#ed19ed"  font-size="9" font-family="Montserrat,sans-serif">Contrast</text>
+                                <text x="92"  y="52" fill="rgba(255,255,255,0.6)" font-size="9" font-family="Montserrat,sans-serif">Structure</text>
+                            </svg>
+                        </div>
+                        <div class="metric-card-body">
+                            <div class="metric-card-header">
+                                <span class="metric-purpose-tag">Tumor Texture Similarity</span>
+                            </div>
+                            <h3 class="metric-card-title">SSIM <span class="metric-card-subtitle">Structural Similarity Index</span></h3>
+                            <p class="metric-card-desc">
+                                SSIM evaluates image quality by jointly measuring luminance, contrast, and structural similarity within local patches. Applied to the tumor ROI, it captures how well the synthesized enhancement texture matches the reference. Values range from 0–1; higher is better.
+                            </p>
+                            <!-- <div class="metric-formula">
+                                SSIM(x,y) = l(x,y) · c(x,y) · s(x,y)
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- ④ FRD -->
+                    <div class="metric-card">
+                        <div class="metric-card-visual mvis-frd" aria-hidden="true">
+                            <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                <polyline points="8,70 18,68 28,55 38,28 48,55 58,68 68,70" fill="none" stroke="#00ffff" stroke-width="1.8" stroke-linejoin="round"/>
+                                <polyline points="28,70 38,67 48,52 58,26 68,52 78,67 88,70" fill="none" stroke="#ed19ed" stroke-width="1.8" stroke-linejoin="round" stroke-dasharray="3,2"/>
+                                <polygon points="8,70 18,68 28,55 38,28 48,55 58,68 68,70" fill="rgba(0,255,255,0.08)"/>
+                                <line x1="38" y1="32" x2="58" y2="30" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+                                <text x="47" y="26" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="6" font-family="Montserrat,sans-serif">FRD</text>
+                                <text x="38" y="76" text-anchor="middle" fill="#00ffff" font-size="6" font-family="Montserrat,sans-serif">Ref</text>
+                                <text x="76" y="76" text-anchor="middle" fill="#ed19ed" font-size="6" font-family="Montserrat,sans-serif">Pred</text>
+                                <!-- <text x="100" y="72" fill="rgba(255,255,255,0.4)" font-size="5.5" font-family="Montserrat,sans-serif">features</text> -->
+                            </svg>
+                        </div>
+                        <div class="metric-card-body">
+                            <div class="metric-card-header">
+                                <span class="metric-purpose-tag">Distribution Realism</span>
+                            </div>
+                            <h3 class="metric-card-title">FRD <span class="metric-card-subtitle">Fréchet Radiomics Distance</span></h3>
+                            <p class="metric-card-desc">
+                                FRD adapts the FID framework to radiomic feature space, measuring the Fréchet distance between the feature distributions of the synthesized ROI patches and real post-contrast patches. Lower values indicate that the synthesized tumors are more statistically indistinguishable from real enhancement patterns.
+                            </p>
+                        </div>
+                    </div>
+
+                    </div><!-- /metric-cards-grid -->
+                </div><!-- /metric-group 2 -->
+
+                <!-- ══ Group 3: Downstream Task — Classification ══ -->
+                <div class="metric-group">
+                    <div class="metric-group-heading">
+                        <span class="metric-group-num">Metric Group 3</span>
+                        Downstream Task: Classification
+                    </div>
+                    <div class="metric-cards-grid">
+
+                    <!-- ⑤ AUROC — double-wide card spanning both columns -->
+                    <div class="metric-card metric-card-double">
+
+                        <!-- Left half: Pre-Post AUROC -->
+                        <div class="metric-card-half metric-card-half--cyan">
+                            <div class="metric-card-visual mvis-auroc" aria-hidden="true">
+                                <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                    <line x1="12" y1="68" x2="108" y2="68" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                                    <line x1="12" y1="68" x2="12"  y2="8"  stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                                    <line x1="12" y1="68" x2="108" y2="8" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-dasharray="3,2"/>
+                                    <path d="M12,68 Q20,20 108,8" fill="none" stroke="#00ffff" stroke-width="2.2"/>
+                                    <polygon points="12,68 20,20 108,8 108,68" fill="rgba(0,255,255,0.09)"/>
+                                    <text x="72" y="52" fill="rgba(0,255,255,0.7)" font-size="7" font-weight="bold" font-family="Montserrat,sans-serif">AUC</text>
+                                    <text x="60" y="77" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="6" font-family="Montserrat,sans-serif">FPR</text>
+                                    <text x="5"  y="40" fill="rgba(255,255,255,0.45)" font-size="6" font-family="Montserrat,sans-serif" transform="rotate(-90,5,40)">TPR</text>
+                                    <circle cx="95" cy="18" r="4" fill="rgba(0,255,255,0.4)" stroke="#00ffff" stroke-width="1"/>
+                                    <text x="95" y="20.5" text-anchor="middle" fill="#fff" font-size="5" font-family="Montserrat,sans-serif">P</text>
+                                    <circle cx="30" cy="62" r="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                                    <text x="30" y="64.5" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="5" font-family="Montserrat,sans-serif">O</text>
+                                </svg>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-card-header">
+                                    <span class="metric-purpose-tag">Binary Classification</span>
+                                </div>
+                                <h3 class="metric-card-title" style="color:#00ffff;">AUROC <span class="metric-card-subtitle" style="color:rgba(0,255,255,0.55);">Pre vs. Post</span></h3>
+                                <p class="metric-card-desc">
+                                    Measures the classifier's ability to distinguish between <strong style="color:#00ffff;">pre and post-contrast</strong> on <mark style="background: #00ffff22; color: #00ffff; font-weight: 700; border-radius: 3px; padding: 0 0.15em;">synthesized</mark> images. A score of 1.0 indicates perfect separation; 0.5 is random.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Vertical divider -->
+                        <div class="metric-card-divider"></div>
+
+                        <!-- Right half: Tumor vs. Non-Tumor AUROC -->
+                        <div class="metric-card-half metric-card-half--magenta">
+                            <div class="metric-card-visual mvis-auroc-tnbc" aria-hidden="true">
+                                <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                    <line x1="12" y1="68" x2="108" y2="68" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                                    <line x1="12" y1="68" x2="12"  y2="8"  stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                                    <line x1="12" y1="68" x2="108" y2="8" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-dasharray="3,2"/>
+                                    <path d="M12,68 Q25,24 108,8" fill="none" stroke="#ed19ed" stroke-width="2.2"/>
+                                    <polygon points="12,68 25,24 108,8 108,68" fill="rgba(237,25,237,0.09)"/>
+                                    <text x="72" y="52" fill="rgba(237,25,237,0.7)" font-size="7" font-weight="bold" font-family="Montserrat,sans-serif">AUC</text>
+                                    <text x="60" y="77" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="6" font-family="Montserrat,sans-serif">FPR</text>
+                                    <text x="5"  y="40" fill="rgba(255,255,255,0.45)" font-size="6" font-family="Montserrat,sans-serif" transform="rotate(-90,5,40)">TPR</text>
+                                    <circle cx="95" cy="18" r="4" fill="rgba(237,25,237,0.4)" stroke="#ed19ed" stroke-width="1"/>
+                                    <text x="95" y="20.5" text-anchor="middle" fill="#fff" font-size="4.5" font-family="Montserrat,sans-serif">T</text>
+                                    <circle cx="30" cy="62" r="4" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                                    <text x="30" y="64.5" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="5" font-family="Montserrat,sans-serif">O</text>
+                                </svg>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-card-header">
+                                    <span class="metric-purpose-tag">Binary Classification</span>
+                                </div>
+                                <h3 class="metric-card-title" style="color:#ed19ed;">AUROC <span class="metric-card-subtitle" style="color:rgba(237,25,237,0.55);">Tumor Vs. Non-Tumor</span></h3>
+                                <p class="metric-card-desc">
+                                    Measures the classifier's ability to distinguish between <strong style="color:#ed19ed;">tumor and non-tumor tissue</strong> on <mark style="background: #ed19ed22; color: #ed19ed; font-weight: 700; border-radius: 3px; padding: 0 0.15em;">synthesized</mark> images. A score of 1.0 indicates perfect separation; 0.5 is random.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    </div><!-- /metric-cards-grid -->
+                </div><!-- /metric-group 3 -->
+
+                <!-- ══ Group 4: Downstream Task — Segmentation ══ -->
+                <div class="metric-group">
+                    <div class="metric-group-heading">
+                        <span class="metric-group-num">Metric Group 4</span>
+                        Downstream Task: Segmentation
+                    </div>
+                    <div class="metric-cards-grid">
+
+                    <!-- ⑥ DICE -->
+                    <div class="metric-card">
+                        <div class="metric-card-visual mvis-dice" aria-hidden="true">
+                            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                <ellipse cx="46" cy="40" rx="28" ry="22" fill="rgba(0,255,255,0.12)" stroke="#00ffff" stroke-width="1.5"/>
+                                <ellipse cx="74" cy="40" rx="28" ry="22" fill="rgba(237,25,237,0.12)" stroke="#ed19ed" stroke-width="1.5"/>
+                                <text x="60" y="43" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="7.5" font-weight="bold" font-family="Montserrat,sans-serif">∩</text>
+                                <text x="22" y="72" text-anchor="middle" fill="#00ffff" font-size="6" font-family="Montserrat,sans-serif">Ref</text>
+                                <text x="98" y="72" text-anchor="middle" fill="#ed19ed" font-size="6" font-family="Montserrat,sans-serif">Pred</text>
+                                <text x="60" y="14" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="6" font-family="Montserrat,sans-serif">Overlap</text>
+                            </svg>
+                        </div>
+                        <div class="metric-card-body">
+                            <div class="metric-card-header">
+                                <span class="metric-purpose-tag">Overlap Accuracy</span>
+                            </div>
+                            <h3 class="metric-card-title">DICE <span class="metric-card-subtitle">Sørensen–Dice Coefficient</span></h3>
+                            <p class="metric-card-desc">
+                                The Dice coefficient measures voxel-level overlap between the predicted segmentation mask on <mark style="background: #00ffff22; color: #00ffff; font-weight: 700; border-radius: 3px; padding: 0 0.15em;">synthesized</mark> post-contrast and the ground-truth mask. It is the harmonic mean of precision and recall over the segmented region. Values range from 0–1; higher values indicate better spatial overlap.
+                            </p>
+                            <!-- <div class="metric-formula">
+                                DICE = <span class="mf-frac"><span class="mf-num">2 |A ∩ B|</span><span class="mf-den">|A| + |B|</span></span>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- ⑦ Hausdorff -->
+                    <div class="metric-card">
+                        <div class="metric-card-visual mvis-hausdorff" aria-hidden="true">
+                            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" class="mvis-svg">
+                                <text x="60" y="10" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="6" font-family="Montserrat,sans-serif">max boundary deviation</text>
+                                <path d="M15,55 Q30,15 60,18 Q90,20 105,55 Q90,68 60,70 Q30,68 15,55Z" fill="rgba(0,255,255,0.07)" stroke="#00ffff" stroke-width="1.5"/>
+                                <path d="M20,52 Q35,12 62,15 Q92,17 108,52 Q92,65 62,67 Q32,65 20,52Z" fill="rgba(237,25,237,0.07)" stroke="#ed19ed" stroke-width="1.5" stroke-dasharray="4,2"/>
+                                <line x1="105" y1="55" x2="108" y2="52" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="105" cy="55" r="2.5" fill="#00ffff"/>
+                                <circle cx="108" cy="52" r="2.5" fill="#ed19ed"/>
+                            </svg>
+                        </div>
+                        <div class="metric-card-body">
+                            <div class="metric-card-header">
+                                <span class="metric-purpose-tag">Boundary Accuracy</span>
+                            </div>
+                            <h3 class="metric-card-title">Hausdorff Distance <span class="metric-card-subtitle">95th Percentile</span></h3>
+                            <p class="metric-card-desc">
+                                The 95th-percentile Hausdorff Distance (HD95) measures the worst-case boundary deviation between the predicted segmentation mask on <mark style="background: #ed19ed22; color: #ed19ed; font-weight: 700; border-radius: 3px; padding: 0 0.15em;">synthesized</mark> post-contrast and reference segmentation contours, excluding the top 5% of outlier distances for robustness. Lower values indicate more precise boundary delineation.
+                            </p>
+                        </div>
+                    </div>
+
+                    </div><!-- /metric-cards-grid -->
+                </div><!-- /metric-group 4 -->
+
+                <!-- /Metric Groups -->
+
+                <!-- Ranking Scheme -->
+                <div class="ranking-scheme-wrapper">
+                    <div class="ranking-scheme-title">Ranking Scheme</div>
+
+                    <div class="ranking-diagram">
+                      <svg viewBox="0 0 900 510" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:640px;max-width:960px;font-family:'Montserrat',sans-serif;display:block;margin:0 auto;">
+                        <defs>
+                          <style>
+                            .rk-top  rect { transition: fill .3s ease, filter .3s ease; }
+                            .rk-top:hover rect { fill: rgba(237,25,237,0.28); filter: drop-shadow(0 0 10px rgba(237,25,237,.75)); }
+
+                            .rk-task rect { transition: fill .25s ease, filter .25s ease; }
+                            .rk-task:hover rect { fill: rgba(0,255,255,0.18); filter: drop-shadow(0 0 8px rgba(0,255,255,.65)); }
+                            .rk-task .rk-sub { transition: fill .25s ease; }
+                            .rk-task:hover .rk-sub { fill: #e0f8ff; }
+
+                            .rk-metric rect { transition: fill .2s ease, filter .2s ease; }
+                            .rk-metric text { transition: fill .2s ease; }
+                            .rk-metric:hover rect { fill: rgba(0,255,255,0.17); filter: drop-shadow(0 0 6px rgba(0,255,255,.55)); }
+                            .rk-metric:hover text { fill: #ffffff; }
+
+                            .rk-avg rect { transition: fill .25s ease, filter .25s ease; }
+                            .rk-avg text { transition: fill .25s ease; }
+                            .rk-avg:hover rect { fill: rgba(237,25,237,0.35); filter: drop-shadow(0 0 9px rgba(237,25,237,.7)); }
+                            .rk-avg:hover text { fill: #ffffff; }
+
+                            .rk-final rect { transition: fill .3s ease, filter .3s ease; }
+                            .rk-final:hover rect { fill: rgba(0,255,255,0.28); filter: drop-shadow(0 0 14px rgba(0,255,255,.8)); }
+                          </style>
+
+                          <marker id="rk-arr-c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <polygon points="0 0, 8 4, 0 8" fill="#00ffff"/>
+                          </marker>
+                          <marker id="rk-arr-m" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <polygon points="0 0, 8 4, 0 8" fill="#ed19ed"/>
+                          </marker>
+                          <!-- gradients must use userSpaceOnUse to work on stroke of <line> elements -->
+                          <linearGradient id="rk-hgrad" x1="112" y1="0" x2="788" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%"   stop-color="#ed19ed"/>
+                            <stop offset="50%"  stop-color="#00ffff"/>
+                            <stop offset="100%" stop-color="#ed19ed"/>
+                          </linearGradient>
+                          <linearGradient id="rk-hgrad2" x1="112" y1="0" x2="788" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%"   stop-color="#ed19ed"/>
+                            <stop offset="50%"  stop-color="#00ffff"/>
+                            <stop offset="100%" stop-color="#ed19ed"/>
+                          </linearGradient>
+                        </defs>
+
+                        <!-- ═══ TOP NODE ═══ -->
+                        <g class="rk-top" style="cursor:default">
+                          <rect x="305" y="10" width="290" height="54" rx="9" fill="rgba(237,25,237,0.15)" stroke="#ed19ed" stroke-width="1.5"/>
+                          <text x="450" y="37" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="600" letter-spacing="1.5">RANKING LOGIC</text>
+                        </g>
+
+                        <!-- V-line: top node → H-spread -->
+                        <line x1="450" y1="64" x2="450" y2="92" stroke="#00ffff" stroke-width="1.5"/>
+
+                        <!-- H-spread top -->
+                        <line x1="112" y1="92" x2="788" y2="92" stroke="url(#rk-hgrad)" stroke-width="2"/>
+
+                        <!-- V-drops from H-spread to task boxes -->
+                        <line x1="112" y1="92"  x2="112" y2="120" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+                        <line x1="338" y1="92"  x2="338" y2="120" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+                        <line x1="562" y1="92"  x2="562" y2="120" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+                        <line x1="788" y1="92"  x2="788" y2="120" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+
+                        <!-- ═══ TASK BOXES ═══ -->
+                        <g class="rk-task" style="cursor:default">
+                          <rect x="16"  y="124" width="192" height="56" rx="7" fill="rgba(0,255,255,0.07)" stroke="#00ffff" stroke-width="1.5"/>
+                          <text x="112" y="143" text-anchor="middle" dominant-baseline="middle" fill="rgba(0,255,255,0.65)" font-size="9" font-weight="600" letter-spacing="1">METRIC GROUP 1</text>
+                          <text x="112" y="163" text-anchor="middle" dominant-baseline="middle" fill="rgba(224,248,255,0.9)" font-size="13" font-weight="500" class="rk-sub">Image</text>
+                        </g>
+                        <g class="rk-task" style="cursor:default">
+                          <rect x="242" y="124" width="192" height="56" rx="7" fill="rgba(0,255,255,0.07)" stroke="#00ffff" stroke-width="1.5"/>
+                          <text x="338" y="143" text-anchor="middle" dominant-baseline="middle" fill="rgba(0,255,255,0.65)" font-size="9" font-weight="600" letter-spacing="1">METRIC GROUP 2</text>
+                          <text x="338" y="163" text-anchor="middle" dominant-baseline="middle" fill="rgba(224,248,255,0.9)" font-size="13" font-weight="500" class="rk-sub">ROI</text>
+                        </g>
+                        <g class="rk-task" style="cursor:default">
+                          <rect x="466" y="124" width="192" height="56" rx="7" fill="rgba(0,255,255,0.07)" stroke="#00ffff" stroke-width="1.5"/>
+                          <text x="562" y="143" text-anchor="middle" dominant-baseline="middle" fill="rgba(0,255,255,0.65)" font-size="9" font-weight="600" letter-spacing="1">METRIC GROUP 3</text>
+                          <text x="562" y="163" text-anchor="middle" dominant-baseline="middle" fill="rgba(224,248,255,0.9)" font-size="13" font-weight="500" class="rk-sub">Classification</text>
+                        </g>
+                        <g class="rk-task" style="cursor:default">
+                          <rect x="692" y="124" width="192" height="56" rx="7" fill="rgba(0,255,255,0.07)" stroke="#00ffff" stroke-width="1.5"/>
+                          <text x="788" y="143" text-anchor="middle" dominant-baseline="middle" fill="rgba(0,255,255,0.65)" font-size="9" font-weight="600" letter-spacing="1">METRIC GROUP 4</text>
+                          <text x="788" y="163" text-anchor="middle" dominant-baseline="middle" fill="rgba(224,248,255,0.9)" font-size="13" font-weight="500" class="rk-sub">Segmentation</text>
+                        </g>
+
+                        <!-- V-lines: task boxes → metric rows -->
+                        <line x1="112" y1="180" x2="112" y2="206" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+                        <line x1="338" y1="180" x2="338" y2="206" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+                        <line x1="562" y1="180" x2="562" y2="206" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+                        <line x1="788" y1="180" x2="788" y2="206" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+
+                        <!-- ═══ METRIC ROW 1 ═══ -->
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="28"  y="210" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(0,255,255,0.45)" stroke-width="1"/>
+                          <text x="112" y="228" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="400">MSE (1.1)</text>
+                        </g>
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="254" y="210" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(0,255,255,0.45)" stroke-width="1"/>
+                          <text x="338" y="228" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="400">SSIM (2.1)</text>
+                        </g>
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="478" y="210" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(0,255,255,0.45)" stroke-width="1"/>
+                          <text x="562" y="228" text-anchor="middle" dominant-baseline="middle" fill="rgba(0,255,255,0.8)" font-size="11" font-weight="400">AUROC (3.1)</text>
+                        </g>
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="704" y="210" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(0,255,255,0.45)" stroke-width="1"/>
+                          <text x="788" y="228" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="400">DICE (4.1)</text>
+                        </g>
+
+                        <!-- ═══ METRIC ROW 2 ═══ -->
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="28"  y="252" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(0,255,255,0.45)" stroke-width="1"/>
+                          <text x="112" y="270" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="400">LPIPS (1.2)</text>
+                        </g>
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="254" y="252" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(0,255,255,0.45)" stroke-width="1"/>
+                          <text x="338" y="270" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="400">FRD (2.2)</text>
+                        </g>
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="478" y="252" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(237,25,237,0.45)" stroke-width="1"/>
+                          <text x="562" y="270" text-anchor="middle" dominant-baseline="middle" fill="rgba(237,25,237,0.75)" font-size="11" font-weight="400">AUROC (3.2)</text>
+                        </g>
+                        <g class="rk-metric" style="cursor:default">
+                          <rect x="704" y="252" width="168" height="36" rx="6" fill="rgba(10,14,39,0.85)" stroke="rgba(0,255,255,0.45)" stroke-width="1"/>
+                          <text x="788" y="270" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="400">Hausdorff (4.2)</text>
+                        </g>
+
+                        <!-- V-lines: metric rows → avg nodes -->
+                        <line x1="112" y1="288" x2="112" y2="316" stroke="#ed19ed" stroke-width="1.5" marker-end="url(#rk-arr-m)"/>
+                        <line x1="338" y1="288" x2="338" y2="316" stroke="#ed19ed" stroke-width="1.5" marker-end="url(#rk-arr-m)"/>
+                        <line x1="562" y1="288" x2="562" y2="316" stroke="#ed19ed" stroke-width="1.5" marker-end="url(#rk-arr-m)"/>
+                        <line x1="788" y1="288" x2="788" y2="316" stroke="#ed19ed" stroke-width="1.5" marker-end="url(#rk-arr-m)"/>
+
+                        <!-- ═══ AVG RANK NODES ═══ -->
+                        <g class="rk-avg" style="cursor:default">
+                          <rect x="42"  y="320" width="140" height="36" rx="18" fill="rgba(237,25,237,0.12)" stroke="#ed19ed" stroke-width="1.5"/>
+                          <text x="112" y="338" text-anchor="middle" dominant-baseline="middle" fill="rgba(237,25,237,0.9)" font-size="11" font-weight="500">Avg Rank 1</text>
+                        </g>
+                        <g class="rk-avg" style="cursor:default">
+                          <rect x="268" y="320" width="140" height="36" rx="18" fill="rgba(237,25,237,0.12)" stroke="#ed19ed" stroke-width="1.5"/>
+                          <text x="338" y="338" text-anchor="middle" dominant-baseline="middle" fill="rgba(237,25,237,0.9)" font-size="11" font-weight="500">Avg Rank 2</text>
+                        </g>
+                        <g class="rk-avg" style="cursor:default">
+                          <rect x="492" y="320" width="140" height="36" rx="18" fill="rgba(237,25,237,0.12)" stroke="#ed19ed" stroke-width="1.5"/>
+                          <text x="562" y="338" text-anchor="middle" dominant-baseline="middle" fill="rgba(237,25,237,0.9)" font-size="11" font-weight="500">Avg Rank 3</text>
+                        </g>
+                        <g class="rk-avg" style="cursor:default">
+                          <rect x="718" y="320" width="140" height="36" rx="18" fill="rgba(237,25,237,0.12)" stroke="#ed19ed" stroke-width="1.5"/>
+                          <text x="788" y="338" text-anchor="middle" dominant-baseline="middle" fill="rgba(237,25,237,0.9)" font-size="11" font-weight="500">Avg Rank 4</text>
+                        </g>
+
+                        <!-- V-lines: avg nodes → H-spread bottom -->
+                        <line x1="112" y1="356" x2="112" y2="388" stroke="#00ffff" stroke-width="1.5"/>
+                        <line x1="338" y1="356" x2="338" y2="388" stroke="#00ffff" stroke-width="1.5"/>
+                        <line x1="562" y1="356" x2="562" y2="388" stroke="#00ffff" stroke-width="1.5"/>
+                        <line x1="788" y1="356" x2="788" y2="388" stroke="#00ffff" stroke-width="1.5"/>
+
+                        <!-- H-spread bottom -->
+                        <line x1="112" y1="388" x2="788" y2="388" stroke="url(#rk-hgrad2)" stroke-width="2"/>
+
+                        <!-- V-line: → final node -->
+                        <line x1="450" y1="388" x2="450" y2="418" stroke="#00ffff" stroke-width="1.5" marker-end="url(#rk-arr-c)"/>
+
+                        <!-- ═══ FINAL NODE ═══ -->
+                        <g class="rk-final" style="cursor:default">
+                          <rect x="290" y="422" width="320" height="68" rx="10" fill="rgba(0,255,255,0.12)" stroke="#00ffff" stroke-width="1.5"/>
+                          <text x="450" y="446" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="17" font-weight="600" letter-spacing="1">Final Ranking</text>
+                          <text x="450" y="470" text-anchor="middle" dominant-baseline="middle" fill="rgba(0,255,255,0.6)" font-size="12" font-weight="300">Average of task ranks</text>
+                        </g>
+                      </svg>
+                    </div>
+                </div>
+                <!-- /Ranking Scheme -->
+
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section-wrapper bg-alt">
+            <div class="content-limit">
+                <h2>Timeline</h2>
+                <div class="timeline-table-wrapper">
+                  <table class="timeline-table">
+                    <tbody>
+                      <tr>
+                        <td class="timeline-date">May 8</td>
+                        <td class="timeline-desc">Validation Phase Opens</td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-05-08"></span></td>
+                      </tr>
+                      <tr class="timeline-hr"><td colspan="3"></td></tr>
+                      <tr>
+                        <td class="timeline-date">June 25</td>
+                        <td class="timeline-desc">Test Phase Opens</td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-06-25"></span></td>
+                      </tr>
+                      <tr class="timeline-hr"><td colspan="3"></td></tr>
+                      <tr>
+                        <td class="timeline-date">July 10</td>
+                        <td class="timeline-desc">Last Submission Deadline</td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-07-10"></span></td>
+                      </tr>
+                    <tr class="timeline-hr"><td colspan="3"></td></tr>
+                      <tr>
+                        <td class="timeline-date">July 15</td>
+                        <td class="timeline-desc">Paper Submission Deadline (<a href="https://openreview.net/group?id=MICCAI.org/2026/Challenge/MAMA-Synth">OpenReview)</a></td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-07-15"></span></td>
+                      </tr>
+                    <tr class="timeline-hr"><td colspan="3"></td></tr>
+                    <tr>
+                        <td class="timeline-date">July 31</td>
+                        <td class="timeline-desc">Paper Review Results Out</td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-07-31"></span></td>
+                    </tr>
+                      <tr class="timeline-hr"><td colspan="3"></td></tr>
+                      <tr>
+                        <td class="timeline-date">August 2</td>
+                        <td class="timeline-desc">Official Results Release</td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-08-02"></span></td>
+                      </tr>
+                    <tr class="timeline-hr"><td colspan="3"></td></tr>
+                    <tr>
+                        <td class="timeline-date">August 16</td>
+                        <td class="timeline-desc">Camera Ready Deadline (<a href="resources/MAMA-SYNTH_CameraReady_Checklist.pdf" target="_blank" rel="noopener" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;">View Checklist</a>)</td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-08-16"></span></td>
+                    </tr>
+                      <tr class="timeline-hr"><td colspan="3"></td></tr>
+                      <tr>
+                        <td class="timeline-date">September 27</td>
+                        <td class="timeline-desc">Winners Announcement at Deep-Breath Workshop (MICCAI 2026)</td>
+                        <td class="timeline-countdown"><span class="countdown" data-date="2026-09-27"></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Presentation Templates -->
+                <style>
+                    .template-downloads {
+                        max-width: 800px;
+                        margin: 3rem auto 0;
+                    }
+                    .template-downloads-title {
+                        margin: 0 0 1.25rem;
+                        font-size: 1.05rem;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        color: rgba(255, 255, 255, 0.85);
+                    }
+                    .template-download-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                        gap: 1rem;
+                    }
+                    .template-download-link {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.9rem;
+                        padding: 1.1rem 1.25rem;
+                        border: 1px solid rgba(0, 255, 255, 0.28);
+                        border-radius: 14px;
+                        background: rgba(0, 255, 255, 0.04);
+                        color: #ffffff;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                    }
+                    .template-download-link:hover,
+                    .template-download-link:focus {
+                        border-color: rgba(0, 255, 255, 0.7);
+                        background: rgba(0, 255, 255, 0.1);
+                        transform: translateY(-2px);
+                    }
+                    .template-download-icon {
+                        font-size: 1.5rem;
+                        line-height: 1;
+                    }
+                    .template-download-name {
+                        font-weight: 600;
+                        font-size: 0.98rem;
+                    }
+                    .template-download-meta {
+                        display: block;
+                        margin-top: 0.2rem;
+                        font-size: 0.8rem;
+                        letter-spacing: 0.5px;
+                        color: rgba(0, 255, 255, 0.75);
+                    }
+                </style>
+                <div class="template-downloads">
+                    <h3 class="template-downloads-title">Presentation Templates</h3>
+                    <div class="template-download-grid">
+                        <a class="template-download-link"
+                           href="resources/Templates/MAMA-SYNTH_DeepBreath_MICCAI2026-Template-A0-Poster.pptx"
+                           download>
+                            <span class="template-download-icon" aria-hidden="true">&#128444;&#65039;</span>
+                            <span>
+                                <span class="template-download-name">A0 Poster Template</span>
+                                <span class="template-download-meta">PPTX &middot; 344 KB &middot; Download</span>
+                            </span>
+                        </a>
+                        <a class="template-download-link"
+                           href="resources/Templates/MAMA-SYNTH_DeepBreath_MICCAI2026-Template-OralTalk.pptx"
+                           download>
+                            <span class="template-download-icon" aria-hidden="true">&#127908;</span>
+                            <span>
+                                <span class="template-download-name">Oral Talk Template</span>
+                                <span class="template-download-meta">PPTX &middot; 7.2 MB &middot; Download</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <!-- /Presentation Templates -->
+            </div>
+        </section>
+
+        <!-- Prizes Section -->
+        <section id="prizes" class="section-wrapper bg-dark">
+            <div class="content-limit">
+                <h2>Awards</h2>
+
+                <!-- Challenge Awards — Podium -->
+                <div style="margin-bottom: 3rem;">
+                    <!-- Podium: order is 2nd | 1st | 3rd visually -->
+                    <div style="display: flex; align-items: flex-end; justify-content: center; gap: 0.75rem; flex-wrap: nowrap;">
+
+                        <!-- 2nd Place (left, medium height) -->
+                        <div class="podium-item" style="flex: 1; max-width: 220px; display: flex; flex-direction: column; align-items: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.4rem;">🥈</div>
+                            <div style="color: #00ffff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">2nd</div>
+                            <div style="color: #ffffff; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">€250</div>
+                            <div class="podium-block" style="
+                                width: 100%;
+                                background: rgba(0,255,255,0.05);
+                                border: 1px solid rgba(0,255,255,0.2);
+                                border-bottom: none;
+                                border-radius: 8px 8px 0 0;
+                                height: 80px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 1.5rem;
+                                font-weight: 700;
+                                color: rgba(0,255,255,0.4);
+                            ">2</div>
+                        </div>
+
+                        <!-- 1st Place (center, tallest) -->
+                        <div class="podium-item" style="flex: 1; max-width: 240px; display: flex; flex-direction: column; align-items: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.4rem;">🥇</div>
+                            <div style="color: #00ffff; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">1st</div>
+                            <div style="color: #ffffff; font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem;">€500</div>
+                            <div class="podium-block" style="
+                                width: 100%;
+                                background: rgba(0,255,255,0.1);
+                                border: 1px solid rgba(0,255,255,0.4);
+                                border-bottom: none;
+                                border-radius: 8px 8px 0 0;
+                                height: 130px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 1.8rem;
+                                font-weight: 700;
+                                color: rgba(0,255,255,0.5);
+                                box-shadow: 0 0 20px rgba(0,255,255,0.15);
+                            ">1</div>
+                        </div>
+
+                        <!-- 3rd Place (right, shortest) -->
+                        <div class="podium-item" style="flex: 1; max-width: 220px; display: flex; flex-direction: column; align-items: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.4rem;">🥉</div>
+                            <div style="color: #00ffff; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem;">3rd</div>
+                            <div style="color: #ffffff; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">€150</div>
+                            <div class="podium-block" style="
+                                width: 100%;
+                                background: rgba(0,255,255,0.03);
+                                border: 1px solid rgba(0,255,255,0.15);
+                                border-bottom: none;
+                                border-radius: 8px 8px 0 0;
+                                height: 50px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 1.5rem;
+                                font-weight: 700;
+                                color: rgba(0,255,255,0.3);
+                            ">3</div>
+                        </div>
+
+                    </div>
+                    <!-- Podium base -->
+                    <div style="height: 10px; background: linear-gradient(90deg, rgba(0,255,255,0.08), rgba(0,255,255,0.25), rgba(0,255,255,0.08)); border-radius: 0 0 8px 8px; box-shadow: 0 4px 15px rgba(0,255,255,0.1);"></div>
+                </div>
+
+                <!-- Best Paper Award -->
+                <div style="margin-top: 1rem;">
+                    <div style="
+                        position: relative;
+                        background: rgba(237,25,237,0.06);
+                        border: 1px solid rgba(237,25,237,0.3);
+                        border-radius: 14px;
+                        padding: 2.5rem 2.5rem 2rem;
+                        overflow: hidden;
+                        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+                    "
+                    onmouseover="this.style.boxShadow='0 0 40px rgba(237,25,237,0.3), 0 0 12px rgba(237,25,237,0.15)'; this.style.borderColor='rgba(237,25,237,0.6)'"
+                    onmouseout="this.style.boxShadow='none'; this.style.borderColor='rgba(237,25,237,0.3)'">
+
+                        <!-- Decorative background orb -->
+                        <div style="position:absolute; top:-40px; right:-40px; width:180px; height:180px; background: radial-gradient(circle, rgba(237,25,237,0.18) 0%, transparent 70%); pointer-events:none;"></div>
+                        <div style="position:absolute; bottom:-30px; left:-30px; width:120px; height:120px; background: radial-gradient(circle, rgba(237,25,237,0.1) 0%, transparent 70%); pointer-events:none;"></div>
+
+                        <div style="display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; position: relative;">
+
+                            <!-- SVG icon: open book with sparkle -->
+                            <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 100px; height: 100px;">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                                    <!-- Glow filter -->
+                                    <defs>
+                                        <filter id="bp-glow" x="-40%" y="-40%" width="180%" height="180%">
+                                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                        </filter>
+                                    </defs>
+                                    <!-- Open book left page -->
+                                    <path d="M12 22 Q30 18 50 22 L50 78 Q30 74 12 78 Z" fill="rgba(237,25,237,0.12)" stroke="#ed19ed" stroke-width="1.5" filter="url(#bp-glow)"/>
+                                    <!-- Open book right page -->
+                                    <path d="M88 22 Q70 18 50 22 L50 78 Q70 74 88 78 Z" fill="rgba(237,25,237,0.08)" stroke="#ed19ed" stroke-width="1.5" stroke-dasharray="none" filter="url(#bp-glow)"/>
+                                    <!-- Book spine -->
+                                    <line x1="50" y1="22" x2="50" y2="78" stroke="#ed19ed" stroke-width="2" opacity="0.8"/>
+                                    <!-- Lines on left page -->
+                                    <line x1="20" y1="35" x2="44" y2="33" stroke="rgba(237,25,237,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <line x1="20" y1="42" x2="44" y2="40" stroke="rgba(237,25,237,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <line x1="20" y1="49" x2="44" y2="47" stroke="rgba(237,25,237,0.25)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <line x1="20" y1="56" x2="38" y2="54" stroke="rgba(237,25,237,0.2)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <!-- Lines on right page -->
+                                    <line x1="56" y1="33" x2="80" y2="35" stroke="rgba(237,25,237,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <line x1="56" y1="40" x2="80" y2="42" stroke="rgba(237,25,237,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <line x1="56" y1="47" x2="80" y2="49" stroke="rgba(237,25,237,0.25)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <line x1="56" y1="54" x2="72" y2="56" stroke="rgba(237,25,237,0.2)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <!-- Sparkle top-right -->
+                                    <g transform="translate(78,14)" fill="#ed19ed" opacity="0.9">
+                                        <polygon points="0,-6 1.5,-1.5 6,0 1.5,1.5 0,6 -1.5,1.5 -6,0 -1.5,-1.5" />
+                                    </g>
+                                    <!-- Small star -->
+                                    <g transform="translate(88,28)" fill="#ed19ed" opacity="0.5">
+                                        <polygon points="0,-3 0.8,-0.8 3,0 0.8,0.8 0,3 -0.8,0.8 -3,0 -0.8,-0.8" />
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Text content -->
+                            <div style="flex: 1; min-width: 200px;">
+                                <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.6rem;">
+                                    <span style="color: #ed19ed; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Best Paper Award</span>
+                                    <span style="color: #ffffff; font-size: 1.8rem; font-weight: 700;">€300</span>
+                                </div>
+                                <p style="color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0; font-size: 0.9rem;">
+                                    Exceptional scientific quality · Methodological novelty · Independent of leaderboard ranking
+                                </p>
+                                <p style="color: rgba(255,255,255,0.45); font-size: 0.82rem; margin: 0.7rem 0 0; line-height: 1.5;">
+                                    Papers submitted to the <a href="https://deep-breath-miccai.github.io/deepbreath-2026/" target="_blank" rel="noopener" style="color: #ed19ed; text-decoration: none; border-bottom: 1px dotted rgba(237,25,237,0.5);">Deep Breath Workshop</a> are eligible.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Rankings -->
+                <style>
+                    .final-rankings-card {
+                        position: relative;
+                        border: 1px solid rgba(0, 255, 255, 0.3);
+                        border-radius: 16px;
+                        padding: 2.5rem 2.5rem 2rem;
+                        overflow: hidden;
+                        background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(237, 25, 237, 0.05));
+                        animation: final-rankings-border-glow 4s ease-in-out infinite;
+                    }
+
+                    @keyframes final-rankings-border-glow {
+                        0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.15), 0 0 10px rgba(237, 25, 237, 0.08); border-color: rgba(0, 255, 255, 0.3); }
+                        50% { box-shadow: 0 0 55px rgba(0, 255, 255, 0.3), 0 0 26px rgba(237, 25, 237, 0.22); border-color: rgba(237, 25, 237, 0.5); }
+                    }
+
+                    .final-rankings-orb {
+                        position: absolute;
+                        border-radius: 50%;
+                        pointer-events: none;
+                    }
+
+                    .final-rankings-orb--1 { top: -60px; right: -60px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%); }
+                    .final-rankings-orb--2 { bottom: -50px; left: -50px; width: 170px; height: 170px; background: radial-gradient(circle, rgba(237, 25, 237, 0.16) 0%, transparent 70%); }
+
+                    .final-rankings-title {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.6rem;
+                        font-size: 1.6rem;
+                        font-weight: 700;
+                        margin-bottom: 0.75rem;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        background: linear-gradient(135deg, #00ffff, #ed19ed);
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        color: transparent;
+                    }
+
+                    .final-rankings-trophy {
+                        font-size: 1.7rem;
+                        display: inline-block;
+                        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
+                        animation: final-rankings-trophy-bounce 2.4s ease-in-out infinite;
+                    }
+
+                    @keyframes final-rankings-trophy-bounce {
+                        0%, 100% { transform: translateY(0) rotate(0deg); }
+                        50% { transform: translateY(-4px) rotate(-8deg); }
+                    }
+
+                    .rankings-secret-row td {
+                        animation: rankings-secret-shimmer 1.6s ease-out forwards;
+                    }
+
+                    @keyframes rankings-secret-shimmer {
+                        0% { background: rgba(255, 215, 0, 0.22); box-shadow: inset 0 0 16px rgba(255, 215, 0, 0.16); }
+                        100% { background: rgba(255, 215, 0, 0.09); box-shadow: inset 0 0 4px rgba(255, 215, 0, 0.05); }
+                    }
+
+                    .data-compare-table tbody tr.rankings-baseline-row td {
+                        background: rgba(237, 25, 237, 0.14);
+                    }
+
+                    .rankings-paper-cell {
+                        max-width: 460px;
+                    }
+                    .rankings-paper-link {
+                        display: inline-block;
+                        color: rgba(0, 255, 255, 0.9);
+                        text-decoration: none;
+                        border-bottom: 1px solid rgba(0, 255, 255, 0.25);
+                        transition: color 0.2s ease, border-color 0.2s ease;
+                    }
+                    .rankings-paper-link:hover,
+                    .rankings-paper-link:focus {
+                        color: #ffffff;
+                        border-bottom-color: #00ffff;
+                    }
+                    .rankings-paper-arrow {
+                        margin-left: 0.35em;
+                        font-size: 0.85em;
+                        opacity: 0.7;
+                    }
+                    .rankings-poster-link {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.35em;
+                        margin-top: 0.5rem;
+                        padding: 0.25rem 0.7rem;
+                        border: 1px solid rgba(237, 25, 237, 0.4);
+                        border-radius: 999px;
+                        background: rgba(237, 25, 237, 0.08);
+                        color: rgba(237, 25, 237, 0.95);
+                        font-size: 0.82rem;
+                        font-weight: 600;
+                        text-decoration: none;
+                        white-space: nowrap;
+                        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+                    }
+                    .rankings-poster-link:hover,
+                    .rankings-poster-link:focus {
+                        background: rgba(237, 25, 237, 0.2);
+                        border-color: rgba(237, 25, 237, 0.85);
+                        color: #ffffff;
+                    }
+                    .rankings-poster-arrow {
+                        font-size: 0.9em;
+                        opacity: 0.85;
+                    }
+                    .rankings-poster-link {
+                        font-family: inherit;
+                        cursor: pointer;
+                    }
+                    .poster-modal {
+                        position: fixed;
+                        inset: 0;
+                        z-index: 9999;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 2rem 1rem;
+                    }
+                    /* a class selector outranks the UA [hidden] rule, so restate it */
+                    .poster-modal[hidden] {
+                        display: none;
+                    }
+                    .poster-modal-backdrop {
+                        position: absolute;
+                        inset: 0;
+                        background: rgba(3, 5, 16, 0.88);
+                        backdrop-filter: blur(4px);
+                    }
+                    .poster-modal-panel {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        width: min(1000px, 100%);
+                        max-height: 100%;
+                        background: #0a0e27;
+                        border: 1px solid rgba(0, 255, 255, 0.35);
+                        border-radius: 14px;
+                        box-shadow: 0 0 60px rgba(0, 255, 255, 0.15);
+                        overflow: hidden;
+                    }
+                    .poster-modal-bar {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        padding: 0.85rem 1rem 0.85rem 1.25rem;
+                        border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+                        background: linear-gradient(135deg, rgba(0,255,255,0.1), rgba(237,25,237,0.07));
+                    }
+                    .poster-modal-title {
+                        flex: 1;
+                        min-width: 0;
+                        color: #ffffff;
+                        font-weight: 700;
+                        font-size: 0.95rem;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    .poster-modal-close {
+                        flex-shrink: 0;
+                        width: 32px;
+                        height: 32px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: transparent;
+                        border: 1px solid rgba(255, 255, 255, 0.25);
+                        border-radius: 50%;
+                        color: rgba(255, 255, 255, 0.8);
+                        font-size: 0.9rem;
+                        line-height: 1;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    }
+                    .poster-modal-close:hover,
+                    .poster-modal-close:focus {
+                        border-color: #00ffff;
+                        color: #00ffff;
+                    }
+                    .poster-modal-body {
+                        flex: 1;
+                        min-height: 0;
+                        overflow: auto;
+                        background: #05070f;
+                        text-align: center;
+                    }
+                    .poster-modal-body img {
+                        display: block;
+                        margin: 0 auto;
+                        max-width: 100%;
+                        height: auto;
+                        cursor: zoom-in;
+                    }
+                    .poster-modal-body.is-zoomed img {
+                        max-width: none;
+                        width: 1800px;
+                        cursor: zoom-out;
+                    }
+                    .poster-modal-hint {
+                        padding: 0.55rem 1rem;
+                        border-top: 1px solid rgba(0, 255, 255, 0.15);
+                        color: rgba(255, 255, 255, 0.45);
+                        font-size: 0.75rem;
+                        text-align: center;
+                    }
+                    body.poster-modal-open {
+                        overflow: hidden;
+                    }
+                    @media (max-width: 640px) {
+                        .poster-modal { padding: 0; }
+                        .poster-modal-panel { border-radius: 0; height: 100%; }
+                    }
+                    .rankings-paper-none {
+                        color: rgba(255, 255, 255, 0.28);
+                    }
+                    .data-compare-table tbody tr.rankings-baseline-row td.dct-field {
+                        background: rgba(237, 25, 237, 0.2);
+                        color: #ed19ed;
+                    }
+                </style>
+                <div id="final-rankings" class="final-rankings-card" style="margin-top: 3rem; scroll-margin-top: 130px;">
+                    <div class="final-rankings-orb final-rankings-orb--1"></div>
+                    <div class="final-rankings-orb final-rankings-orb--2"></div>
+                    <h3 class="final-rankings-title"><span class="final-rankings-trophy" aria-hidden="true">🏆</span> Final Rankings</h3>
+                    <p style="position: relative; margin: 0 0 1.5rem; color: rgba(255,255,255,0.72); line-height: 1.7; font-size: 0.95rem;">
+                        The top placements are being kept confidential until the official announcement at MICCAI 2026 @ Strasbourg, France. Two candidates share the second position. Congratulations on all your work!
+                    </p>
+                    <div style="position: relative; overflow-x: auto;">
+                        <table class="data-compare-table">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 110px;">Rank</th>
+                                    <th style="min-width: 170px;">Team Name</th>
+                                    <th>Paper</th>
+                                </tr>
+                            </thead>
+                            <tbody id="final-rankings-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Poster lightbox -->
+                <div id="poster-modal" class="poster-modal" hidden>
+                    <div class="poster-modal-backdrop" data-poster-close></div>
+                    <div class="poster-modal-panel" role="dialog" aria-modal="true" aria-labelledby="poster-modal-title">
+                        <div class="poster-modal-bar">
+                            <span class="poster-modal-title" id="poster-modal-title"></span>
+                            <button type="button" class="poster-modal-close" data-poster-close aria-label="Close poster">&#10005;</button>
+                        </div>
+                        <div class="poster-modal-body" id="poster-modal-body">
+                            <img id="poster-modal-img" alt="" />
+                        </div>
+                        <div class="poster-modal-hint">Click the poster to zoom &middot; Esc to close</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section-wrapper bg-dark">
+            <div class="content-limit">
+                <h2>Organization Committee</h2>
+                <div class="team-grid">
+                    <article class="team-member">
+                        <img src="images/smriti.png" alt="Smriti Joshi" class="profile-img" loading="lazy">
+                        <h4>Smriti Joshi</h4>
+                        <p>Universitat de Barcelona, Spain</p>
+                        <span class="role-tag">Challenge Co-Lead</span>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/richard.png" alt="Richard Osuala" class="profile-img" loading="lazy">
+                        <h4>Richard Osuala</h4>
+                        <p>Universitat de Barcelona, Spain</p>
+                        <span class="role-tag">Challenge Co-Lead</span>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/jarek.jpg" alt="Jarek van Dijk" class="profile-img" loading="lazy">
+                        <h4>Jarek van Dijk</h4>
+                        <p>Radboud University Medical Centre, Netherlands</p>
+                        <span class="role-tag">Challenge Co-Lead</span>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/luyi.png" alt="Luyi Han" class="profile-img" loading="lazy">
+                        <h4>Luyi Han</h4>
+                        <p>Radboud University Medical Centre, Netherlands</p>
+                    </article>
+
+                    <article class="team-member">
+                        <img src="images/lidia.png" alt="Lidia Garrucho" class="profile-img" loading="lazy">
+                        <h4>Lidia Garrucho</h4>
+                        <p>Universitat de Barcelona, Spain</p>
+                    </article>
+
+                    <article class="team-member">
+                        <img src="images/maria.png" alt="Maria Laura Cosaka" class="profile-img" loading="lazy">
+                        <h4>Maria Laura Cosaka</h4>
+                        <p>Instituto Alexander Fleming, Argentina</p>
+                    </article>
+
+                    <article class="team-member">
+                        <img src="images/antonio.png" alt="Antonio Portaluri" class="profile-img" loading="lazy">
+                        <h4>Antonio Portaluri</h4>
+                        <p>Radboud University Medical Centre, Netherlands</p>
+                    </article>
+
+                    <article class="team-member">
+                        <img src="images/Jamilia.jpg" alt="Jamilia Arykbaeva" class="profile-img" loading="lazy">
+                        <h4>Jamilia Arykbaeva</h4>
+                        <p>Universitat de Barcelona, Spain</p>
+                    </article>
+
+                    <article class="team-member">
+                        <img src="images/oliver.png" alt="Oliver Diaz" class="profile-img" loading="lazy">
+                        <h4>Oliver Diaz</h4>
+                        <p>Universitat de Barcelona & CVC, Spain</p>
+                    </article>
+                </div>
+
+                <h2 style="margin-top: 3rem;">Advisory Committee</h2>
+                <div class="team-grid">
+                    <article class="team-member">
+                        <img src="images/yaofei.jpg" alt="Yaofei Duan" class="profile-img" loading="lazy">
+                        <h4>Yaofei Duan</h4>
+                       <p>Radboud University Medical Centre, Netherlands</p>
+                    </article>
+                    
+                    <article class="team-member">
+                        <img src="images/tianyu.png" alt="Tianyu" class="profile-img" loading="lazy">
+                        <h4>Tianyu Zhang</h4>
+                        <p>Radboud University Medical Centre, Netherlands</p>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/ritse.jpg" alt="Ritse Mann" class="profile-img" loading="lazy">
+                        <h4>Ritse Mann</h4>
+                        <p>Radboud University Medical Centre, Netherlands</p>
+                    </article>       
+                    <article class="team-member">
+                        <img src="images/daniel.jpg" alt="Daniel Mysler" class="profile-img" loading="lazy">
+                        <h4>Daniel Mysler</h4>
+                        <p>Instituto Alexander Fleming, Argentina</p>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/simone.png" alt="Simone Balocco" class="profile-img" loading="lazy">
+                        <h4>Simone Balocco</h4>
+                        <p>Universitat de Barcelona & CVC, Spain</p>
+                    </article>
+                    <article class="team-member">
+                        <img src="images/karim.png" alt="Karim Lekadir" class="profile-img" loading="lazy">
+                        <h4>Karim Lekadir</h4>
+                        <p>Universitat de Barcelona & ICREA, Spain</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section-wrapper bg-alt">
+            <div class="content-limit">
+                <h2>Contact</h2>
+                <p style="margin-bottom: 2rem; color: rgba(255, 255, 255, 0.85);">For Q&A regarding challenge, please directly refer to <a href="https://mamasynth.grand-challenge.org/forum/topics/" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;">Grand Challenge Forum</a>. For additional inquiries about the MAMA-SYNTH challenge and future collaborations, feel free to reach out to Smriti Joshi (<a href="mailto:smriti.joshi@ub.edu" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;">smriti.joshi[at]ub.edu</a>) and Richard Osuala (<a href="mailto:richard.osuala@gmail.com" style="color: #00ffff; text-decoration: none; border-bottom: 1px solid #00ffff;">richard.osuala[at]gmail.com</a>).
+                    .
+                </p>
+            </div>
+        </section>
+    
+        <!-- Institutions Section -->
+        <section id="institutions" class="section-wrapper bg-light">
+            <div class="content-limit">
+                <h2 style="border: none; padding: 0;">Partners & Institutions</h2>
+                <div class="logo-row">
+                    <img src="logos/Deep-Breath-logo.png" alt="Deep-Breath Workshop" class="inst-logo" loading="lazy">
+                    <img src="images/miccai2026-logo-france.png" alt="MICCAI 2026 Logo" class="inst-logo" loading="lazy">
+                    <img src="logos/Logo_Universitat_de_Barcelona.png" alt="University of Barcelona" class="inst-logo" loading="lazy">
+                    <img src="logos/bcn-aim-logo.png" alt="BCN-AIM Lab" class="inst-logo" loading="lazy">
+                    <img src="logos/Radboudumc_logo.png" alt="Radboud University Medical Centre" class="inst-logo" loading="lazy">
+                    <img src="logos/fleming_logo.png" alt="Instituto Alexander Fleming" class="inst-logo" loading="lazy">
+                    <img src="logos/NKI_logo.png" alt="Netherlands Cancer Institute" class="inst-logo" loading="lazy">
+                    <img src="logos/RadioVal-logo.svg" alt="RadioVal Project" class="inst-logo" loading="lazy">
+                    <img src="logos/aimed.png" alt="AIMED" class="inst-logo" loading="lazy">
+                    <img src="logos/spanish_projects.jpg" alt="Spanish Projects" class="inst-logo" loading="lazy">
+                    <img src="logos/big.png" alt="BIG" class="inst-logo" loading="lazy">
+    
+                </div>
+            </div>
+        </section>
+        </section><!-- End of MAMA-SYNTH Challenge 2026 -->
+
+        </main>
+
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="content-limit">
+            <p>This challenge is supported by the <a href="https://www.bcn-aim.org/aimed/">AIMED</a>   and <a href="https://www.bcn-aim.org/future-es/">FUTURE-ES</a> projects (Ministry of Science, Spain) and the European Union's Horizon Europe programme (<a href="https://radioval.eu/">RadioVal</a> and <a href="https://odelia.ai/">ODELIA</a>).</p>
+            <p style="font-size: 14px; margin-top: 20px; opacity: 0.5;">&copy; 2026 MAMA-SYNTH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Perfusion Background Animation -->
+    <script src="js/perfusion-background.js"></script>
+    
+    <!-- Main Website Script -->
+    <script src="js/main.js"></script>
+    
+    <!-- Initialize Perfusion Background with Enhanced Visibility -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new PerfusionBackground({
+                container: document.getElementById('perfusion-bg-container'),
+                particleCount: 500,           // Moderate count for smooth coverage
+                flowSpeed: 0.01,               // Extremely slow, barely perceptible motion
+                particleSize: 3.5,             // Smaller particles
+                colors: [
+                    0x00ffff,                  // Bright Cyan - primary
+                    0xff00ff,                  // Magenta - secondary
+                    0xffffff                   // White - highlights
+                ],
+                density: 0.15,                 // Very low density for subtle effect
+                turbulence: 0.5,               // Moderate turbulence
+                glowIntensity: 0.3,            // Very low opacity/glow
+                backgroundColor: 0x0a0e27      // Perfusion demo navy background
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rankings = [
+                // Top placements stay confidential until the MICCAI 2026 announcement:
+                // no rank values are stored for these rows, and the order below is
+                // deliberately scrambled so it carries no placement information.
+                { title: 'kmadapati', paper: 'https://openreview.net/forum?id=hBJwjxyOHD', paperTitle: 'When Regression Beats Generation: Virtual Contrast-Enhanced Breast MRI and What Its Metrics Reward' },
+                { title: 'tanlei086', paper: 'https://openreview.net/forum?id=W7r5fJRUth', paperTitle: 'Predictive Enhancement Calibration for Latent Breast MRI Virtual Contrast Enhancement' },
+                { title: 'freedom.424', paper: 'https://openreview.net/forum?id=pfwyh0z5V2', paperTitle: 'Supervised Virtual Contrast Enhancement in Breast MRI with Multi-Domain Losses and Lesion-Aware Decoding' },
+                { title: 'bhamm', paper: 'https://openreview.net/forum?id=YoQxBrOnbB', paperTitle: 'Anguinus Sculpturae: Compositional Synthesis of Peak-Enhancement Breast DCE-MRI Scans' },
+                { title: 'g.yiasemis', rank: 5, paper: 'https://openreview.net/forum?id=cmL2nPVE09', paperTitle: 'MIRAGE: Multi-scale Lesion-Informed Representation with Auxiliary Guidance for MRI Contrast Enhancement' },
+                { title: 'shoheyhey53', rank: 6, paper: 'https://arxiv.org/abs/2609.22397', paperTitle: 'Lesion-Gated Hybrid Synthesis for Virtual Contrast-Enhanced Breast MRI: A MAMA-SYNTH Challenge Solution' },
+                { title: 'lvmengye', rank: 7, paper: 'https://openreview.net/forum?id=H6mWSUyP1K', paperTitle: 'ROI-Aware Residual Ensembles for Virtual Contrast Enhancement in Breast DCE-MRI' },
+                { title: 's-vsp00', rank: 8, paper: 'https://openreview.net/forum?id=pxEWO4hroC', paperTitle: 'MAMA-FLUX.2: Image-to-Image Synthesis of Post-Contrast Breast DCE-MRI for the MAMA-SYNTH Challenge' },
+                { title: 'cksehfdl0316', rank: 9 },
+                { title: 'lilacf05', rank: 10, paper: 'https://openreview.net/forum?id=sZCNjsTBwX', paperTitle: 'Where and How Much: Enhancement-Decomposed Flow Matching for Virtual Contrast-Enhanced Breast MRI' },
+                { title: 'kiyong12', rank: 11, paper: 'https://openreview.net/forum?id=pFqFYmVYI2', paperTitle: 'Lesion-Aware Virtual Contrast-Enhancement in Breast MRI Using CycleGAN', posterImage: 'resources/Poster_Lesion-Aware_Virtual_Contrast-Enhancement_in_Breast_MRI_Using_CycleGAN.png' },
+                { title: 'Valentin', rank: 12 },
+                { title: 'hida1211', rank: 13, paper: 'https://openreview.net/forum?id=S09lsDDfjD', paperTitle: 'Tumor-Aware Residual nnU-Net for Virtual Peak-Enhancement Breast DCE-MRI Synthesis from a Single Pre-Contrast Slice' },
+                { title: 'jianghongb', rank: 13, paper: 'https://openreview.net/forum?id=F8WhTtpcmc', paperTitle: 'Tumor-Aware Conditional Pix2PixHD with Per-Image Normalization for Virtual Contrast Enhancement in Breast MRI' },
+                { title: 'Yujian', rank: 15, paper: 'https://openreview.net/forum?id=9LzxQoRic6', paperTitle: 'Two-Stage Enhancement-Field Synthesis of Contrast-Enhanced Breast MRI from Pre-Contrast Slices' },
+                { title: 'MohamedAA', rank: 16 },
+                { title: 'yassine', rank: 17, paper: 'https://openreview.net/forum?id=KFFVGXqIBz', paperTitle: 'Delta-Conservative and Task-Aware Synthesis of Contrast-Enhanced Breast MRI' },
+                { title: 'Itinerant_army', rank: 18 },
+                { title: 'mohakas', rank: 19 },
+                { title: 'sina.amirrajab', rank: 20, paper: 'https://openreview.net/forum?id=k29MIMmjCm', paperTitle: 'Pre- to Post-Contrast Synthesis of Breast DCE-MRI using Latent Bridge Matching' },
+                { title: 'kteaw0110', rank: 21 },
+                { title: 'KonstantinosGeorgas', rank: 22, paper: 'https://openreview.net/forum?id=AlGoXZeNbR', paperTitle: 'DARE: Dilated Anatomy-Anchored Residual Enhancement for Virtual Contrast Synthesis in Breast DCE-MRI' },
+                { title: 'toufiqmusah32', rank: 23, paper: 'https://openreview.net/forum?id=T6lb8Ywbu5', paperTitle: 'Virtual Contrast Enhancement in Breast Magnetic Resonance Imaging: Back to U-Net!' },
+                { title: 'nuno.loucao', rank: 24 },
+                { title: 'dsuh0i', rank: 25 },
+                { title: 'salmanewegy', rank: 26 },
+                { title: 'rios (PreContrast Identity Baseline)', rank: 27, baseline: true },
+                { title: 'lhofb', rank: 28 },
+                { title: 'rios (Pix2PixHD Pretrained GAN Baseline)', rank: 29, baseline: true },
+                { title: 'thanhson28', rank: 30 }
+            ];
+
+            const body = document.getElementById('final-rankings-body');
+            if (!body) {
+                return;
+            }
+
+            const escapeHtml = function(value) {
+                return String(value)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            };
+
+            const SECRET_COUNT = 4;
+
+            const paperCell = function(entry) {
+                const parts = [];
+                if (entry.paper) {
+                    parts.push('<a class="rankings-paper-link" href="' + escapeHtml(entry.paper) + '"' +
+                        ' target="_blank" rel="noopener">' + escapeHtml(entry.paperTitle || 'View paper') +
+                        '<span class="rankings-paper-arrow" aria-hidden="true">↗</span></a>');
+                }
+                if (entry.posterImage) {
+                    parts.push('<button type="button" class="rankings-poster-link"' +
+                        ' data-poster-img="' + escapeHtml(entry.posterImage) + '"' +
+                        ' data-poster-team="' + escapeHtml(entry.title) + '">' +
+                        '<span class="rankings-poster-arrow" aria-hidden="true">⛶</span>View Poster</button>');
+                }
+                if (!parts.length) {
+                    return '<span class="rankings-paper-none">—</span>';
+                }
+                return parts.join('');
+            };
+
+            const renderRankings = function(rotationOffset) {
+                const secretRows = rankings.slice(0, SECRET_COUNT);
+                const rotatedSecretRows = secretRows.slice(rotationOffset).concat(secretRows.slice(0, rotationOffset));
+                const visibleRows = rotatedSecretRows.concat(rankings.slice(SECRET_COUNT));
+
+                body.innerHTML = visibleRows.map(function(entry, index) {
+                    const isSecretRow = index < SECRET_COUNT;
+                    const rankDisplay = isSecretRow ? '\u{1F92B}' : entry.rank;
+                    const rowClass = isSecretRow ? 'rankings-secret-row' : (entry.baseline ? 'rankings-baseline-row' : '');
+                    return '<tr' + (rowClass ? ' class="' + rowClass + '"' : '') + '>' +
+                        '<td class="dct-field">' + rankDisplay + '</td>' +
+                        '<td>' + escapeHtml(entry.title) + '</td>' +
+                        '<td class="rankings-paper-cell">' + paperCell(entry) + '</td>' +
+                    '</tr>';
+                }).join('');
+            };
+
+            const rotationMs = 2000;
+            const getRotationOffset = function() {
+                return Math.floor(Date.now() / rotationMs) % SECRET_COUNT;
+            };
+
+            renderRankings(getRotationOffset());
+            setInterval(function() {
+                renderRankings(getRotationOffset());
+            }, rotationMs);
+
+            // Poster lightbox
+            const modal = document.getElementById('poster-modal');
+            if (modal) {
+                const modalImg = document.getElementById('poster-modal-img');
+                const modalBody = document.getElementById('poster-modal-body');
+                const modalTitle = document.getElementById('poster-modal-title');
+                let lastFocused = null;
+
+                const closePoster = function() {
+                    modal.hidden = true;
+                    modalBody.classList.remove('is-zoomed');
+                    modalImg.removeAttribute('src');
+                    document.body.classList.remove('poster-modal-open');
+                    if (lastFocused && lastFocused.focus) { lastFocused.focus(); }
+                    lastFocused = null;
+                };
+
+                const openPoster = function(trigger) {
+                    lastFocused = trigger;
+                    const team = trigger.getAttribute('data-poster-team') || '';
+                    modalImg.src = trigger.getAttribute('data-poster-img');
+                    modalImg.alt = 'Poster submitted by ' + team;
+                    modalTitle.textContent = team ? 'Poster \u2014 ' + team : 'Poster';
+                    modalBody.classList.remove('is-zoomed');
+                    modalBody.scrollTop = 0;
+                    modal.hidden = false;
+                    document.body.classList.add('poster-modal-open');
+                    modal.querySelector('.poster-modal-close').focus();
+                };
+
+                // delegated: the table re-renders every couple of seconds
+                body.addEventListener('click', function(event) {
+                    const trigger = event.target.closest('.rankings-poster-link[data-poster-img]');
+                    if (trigger) {
+                        event.preventDefault();
+                        openPoster(trigger);
+                    }
+                });
+
+                modal.addEventListener('click', function(event) {
+                    if (event.target.closest('[data-poster-close]')) {
+                        closePoster();
+                    }
+                });
+
+                modalImg.addEventListener('click', function() {
+                    modalBody.classList.toggle('is-zoomed');
+                });
+
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape' && !modal.hidden) {
+                        closePoster();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

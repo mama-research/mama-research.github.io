@@ -1,0 +1,34 @@
+/**
+ * Main Stylesheet - MAMA-SYNTH Challenge
+ * Imports all modular CSS files in the correct order
+ */
+
+/* 1. CSS Variables and Configuration */
+@import url('variables.css');
+
+/* 2. Reset and Base Styles */
+@import url('reset.css');
+
+/* 3. Typography */
+@import url('typography.css');
+
+/* 4. Layout */
+@import url('layout.css');
+
+/* 5. Components */
+@import url('components.css');
+
+/* 6. Navigation */
+@import url('navigation.css');
+
+/* 7. Hero Section */
+@import url('hero.css');
+
+/* 8. Footer */
+@import url('footer.css');
+
+/* 9. Utilities */
+@import url('utilities.css');
+
+/* 10. Enhancements */
+@import url('enhancements.css');

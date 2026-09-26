@@ -1,0 +1,53 @@
+/**
+ * Footer Styles - MAMA-MIA Style with Gradient
+ * Footer section styles
+ */
+
+footer {
+    background: linear-gradient(180deg, var(--color-dark-gray) 0%, var(--color-black) 100%);
+    color: var(--color-white);
+    padding: 60px var(--spacing-lg);
+    text-align: center;
+    border-top: 1px solid rgba(244,107,93,0.3);
+}
+
+footer p {
+    margin-bottom: var(--spacing-xs);
+}
+
+footer a {
+    color: var(--primary-coral);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: var(--accent-hover);
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    footer {
+        padding: 30px 20px;
+    }
+    
+    footer p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 20px 12px;
+    }
+    
+    footer p {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+}

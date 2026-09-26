@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <meta name="description" content="About MAMA Research - Advancing AI in Breast Cancer Diagnosis">
+    <meta name="author" content="MAMA Consortium">
+    <meta name="goatcounter" content="https://mama-synth.goatcounter.com/count">
+    
+    <title>About | MAMA RESEARCH</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/mama-breastmark-logo.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Responsive Enhancements -->
+    <link rel="stylesheet" href="css/responsive-enhancements.css">
+    
+    <!-- Perfusion Background Styles -->
+    <style>
+        header, main, footer {
+            position: relative;
+            z-index: 10;
+        }
+        
+        body {
+            background: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Perfusion Background Animation Container -->
+    <div id="perfusion-bg-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></div>
+
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header & Navigation -->
+    <header role="banner">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="index.html" class="logo" aria-label="MAMA Research Home">
+                    <img src="images/mama-breastmark-logo.svg" alt="MAMA logo" class="site-logo-icon" width="34" height="34">
+                    <span>MAMA Research</span>
+                </a>
+            </div>
+            
+            <!-- Mobile menu toggle button -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+            
+            <!-- Top-level navigation -->
+            <nav role="navigation" aria-label="Main navigation" class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-tab active">About</a></li>
+                    <li><a href="mama-synth.html" class="nav-tab">MAMA-SYNTH Challenge 2026</a></li>
+                    <li><a href="https://www.ub.edu/mama-mia/" class="nav-tab" target="_blank" data-force-new-tab="true">MAMA-MIA Challenge 2025 <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="https://www.synapse.org/Synapse:syn60868042/wiki/628716" class="nav-tab" target="_blank">MAMA-MIA Dataset <span aria-hidden="true">↗</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- About Section -->
+        <section class="section-wrapper bg-dark">
+            <div class="content-limit">
+                <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">About MAMA Research</h1>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">MAMA Research represent a comprehensive umbrella initiative dedicated to advancing artificial intelligence and machine learning solutions in breast cancer diagnosis, analysis, and treatment. By bringing together diverse imaging tasks, datasets, and evaluation frameworks, the MAMA Research foster innovation and collaboration among researchers, clinicians, and industry experts to improve breast cancer detection, characterization, and management through encouraging cutting-edge computational approaches.</p>
+                
+                <h2 style="margin-top: 3rem; color: #00ffff; text-shadow: 0 0 15px rgba(0, 255, 255, 0.6); text-align: center;">Recent News & Updates</h2>
+                
+                <div class="news-section" style="margin-top: 3rem;">
+
+                    <article class="news-item">
+                        <div class="news-date">August 2, 2026</div>
+                        <h3>MAMA-SYNTH Rankings Released</h3>
+                        <p>The final rankings for the MAMA-SYNTH challenge are now live. Check out the <a href="mama-synth.html#final-rankings" target="_blank">leaderboard</a> to see how teams placed.</p>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-date">February 20, 2026</div>
+                        <h3>MAMA-SYNTH Challenge Announced</h3>
+                        <p>We are excited to announce the MAMA-SYNTH challenge, focusing on synthesizing virtual contrast-enhanced breast MRI. This challenge has been accepted at the International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI 2026) and is organized in collaboration with the Deep-Breath Workshop 2026. We invite you to visit the <a href="mama-synth.html">MAMA-SYNTH page</a> for more details!</p>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-date">July 31, 2025</div>
+                        <h3>MAMA-MIA Challenge Concluded</h3>
+                        <p>The inaugural MAMA-MIA challenge for Primary Tumor Segmentation and Pathologic Complete Response Prediction, hosted jointly with MICCAI 2025 and Deep Breath workshop has been officially concluded with remarkable participation from 26 international teams.</p>
+                            <p>🚀 Validate your algorithms on the <a href="https://www.codabench.org/competitions/7425/" target="_blank">long term benchmark</a> now! 🏆</p>
+                            <p>📄 Look at the arXiv version of our <a href="https://arxiv.org/abs/2603.01250" target="_blank">paper</a> summarizing the challenge! 🔗</p>
+                    </article>
+
+                </div>
+
+                <div style="text-align: center; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(0, 255, 255, 0.3);">
+                    <h3 style="color: #ff00ff; margin-bottom: 1.5rem; text-shadow: 0 0 15px rgba(255, 0, 255, 0.5);">Open Source & Community-Driven</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 1rem;">Explore our repositories, contribute to the challenges, and join our community on GitHub</p>
+                    <a href="https://github.com/mama-research/" target="_blank" class="btn" role="button" style="display: inline-block;">Visit MAMA-RESEARCH on GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="content-limit">
+            <p>MAMA Research is supported by Artificial Intelligence in Medicine Laboratory from Universitat de Barcelona, Spain.</p>
+            <p style="font-size: 14px; margin-top: 20px; opacity: 0.5;">&copy; MAMA-RESEARCH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/perfusion-background.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Initialize Perfusion Background -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new PerfusionBackground({
+                container: document.getElementById('perfusion-bg-container'),
+                particleCount: 500,
+                flowSpeed: 0.01,
+                particleSize: 3.5,
+                colors: [
+                    0x00ffff,
+                    0xff00ff,
+                    0xffffff
+                ],
+                density: 0.15,
+                turbulence: 0.5,
+                glowIntensity: 0.3,
+                backgroundColor: 0x0a0e27
+            });
+        });
+    </script>
+</body>
+</html>

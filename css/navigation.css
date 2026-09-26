@@ -1,0 +1,416 @@
+/**
+ * Navigation Styles
+ * Header and navigation menu components
+ */
+
+/* Header - Perfusion Demo Style */
+header {
+    background: transparent;
+    border-bottom: none;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: none;
+    box-shadow: none;
+    min-height: 60px;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    min-height: 60px;
+    position: relative;
+}
+
+/* Top-level navigation */
+.main-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-tab {
+    font-family: var(--font-nav);
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-tab:hover,
+.nav-tab.active {
+    color: #00ffff;
+    border-bottom-color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+/* Secondary navigation for challenge sections */
+.secondary-nav-container {
+    background: rgba(10, 14, 39, 0.5);
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 0 var(--spacing-lg);
+    backdrop-filter: blur(5px);
+}
+
+.secondary-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: var(--spacing-sm) 0;
+    align-items: center;
+}
+
+/* Logo - Perfusion Demo Style */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-white);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+.logo:hover {
+    text-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+}
+
+.site-logo-icon {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    /* filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)); */
+}
+
+/* Logo container for text logo and image logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* MICCAI 2026 logo styling */
+.miccai-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.miccai-logo-img {
+    height: 50px;
+    width: auto;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+}
+.miccai-logo:hover .miccai-logo-img {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8));
+}
+
+/* Secondary navigation links */
+.secondary-nav ul li a {
+    font-family: var(--font-nav);
+    color: var(--color-white);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all var(--transition-fast);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+    text-decoration: none;
+}
+
+.secondary-nav ul li a:hover,
+.secondary-nav ul li a:focus {
+    color: #00ffff;
+    border-bottom-color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+/* Results CTA pill in secondary nav - draws attention to the final rankings */
+.secondary-nav ul li a.nav-results-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #000;
+    background: linear-gradient(135deg, #ca23ca, #00ffff);
+    padding: 6px 16px;
+    border-radius: 50px;
+    border-bottom: none;
+    text-shadow: none;
+    animation: nav-results-cta-pulse 2.2s ease-in-out infinite;
+}
+
+.secondary-nav ul li a.nav-results-cta:hover,
+.secondary-nav ul li a.nav-results-cta:focus {
+    color: #000;
+    border-bottom: none;
+    text-shadow: none;
+    transform: scale(1.06);
+}
+
+@keyframes nav-results-cta-pulse {
+    0%, 100% { box-shadow: 0 0 12px rgba(255, 0, 255, 0.35); }
+    50% { box-shadow: 0 0 22px rgba(0, 255, 255, 0.6); }
+}
+
+/* Mobile navigation toggle */
+.mobile-menu-toggle {
+    display: none !important;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 28px;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    padding: 10px 15px;
+    z-index: 1001;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    font-size: 32px;
+    text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+}
+
+/* Disable all mobile responsiveness - always show desktop view */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: var(--spacing-md) var(--spacing-lg) !important;
+        flex-wrap: nowrap !important;
+        position: relative;
+        justify-content: space-between;
+    }
+    
+    .main-nav {
+        display: flex !important;
+        position: static !important;
+        background: transparent !important;
+        padding: 0 !important;
+        width: auto !important;
+    }
+    
+    .main-nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        backdrop-filter: none !important;
+        gap: 2rem !important;
+        width: auto !important;
+        z-index: auto !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        margin: 0 !important;
+        list-style: none !important;
+    }
+    
+    .main-nav ul.active {
+        display: flex !important;
+    }
+    
+    .main-nav ul li {
+        pointer-events: auto !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+    
+    .main-nav ul li a {
+        display: inline !important;
+        padding: 8px 0 !important;
+        pointer-events: auto !important;
+        width: auto !important;
+        font-size: 14px !important;
+    }
+    
+    .secondary-nav-container {
+        display: block !important;
+        width: 100%;
+        border-top: 1px solid rgba(0, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .secondary-nav-container.active {
+        display: block;
+    }
+    
+    .secondary-nav ul {
+        flex-direction: row !important;
+        gap: 2rem !important;
+        padding: var(--spacing-sm) 0 !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    .logo {
+        font-size: 24px !important;
+    }
+
+    .logo-container {
+        gap: 15px !important;
+    }
+
+    .miccai-logo-img {
+        height: 50px !important;
+    }
+
+    .main-nav {
+        order: auto !important;
+        width: auto !important;
+    }
+    
+    .nav-tab {
+        font-size: 14px !important;
+        padding: 8px 0 !important;
+        display: inline !important;
+        width: auto !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-container {
+        padding: var(--spacing-md) var(--spacing-lg) !important;
+        position: relative;
+        flex-wrap: nowrap !important;
+    }
+    
+    .logo {
+        font-size: 24px !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .nav-tab {
+        font-size: 14px !important;
+        padding: 8px 0 !important;
+        display: inline !important;
+        width: auto !important;
+        text-align: center !important;
+    }
+    
+    .nav-tab:hover {
+        background-color: transparent !important;
+    }
+    
+    .mobile-menu-toggle {
+        font-size: 28px !important;
+        padding: 10px 15px !important;
+        display: none !important;
+    }
+    
+    .main-nav ul {
+        padding: 0 !important;
+        top: auto !important;
+        gap: 2rem !important;
+        flex-direction: row !important;
+    }
+    
+    .main-nav ul li a {
+        padding: 8px 0 !important;
+        font-size: 14px !important;
+        display: inline !important;
+    }
+    
+    .secondary-nav ul {
+        padding: var(--spacing-sm) 0 !important;
+        gap: 2rem !important;
+        flex-direction: row !important;
+    }
+    
+    .secondary-nav ul li a {
+        font-size: 13px !important;
+        display: inline !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: var(--spacing-md) var(--spacing-lg) !important;
+        gap: auto !important;
+        position: relative;
+        min-height: 60px !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .logo {
+        font-size: 24px !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .nav-tab {
+        font-size: 14px !important;
+        padding: 8px 0 !important;
+        display: inline !important;
+        width: auto !important;
+        text-align: center !important;
+    }
+    
+    .nav-tab:hover {
+        background-color: transparent !important;
+    }
+    
+    .logo-container {
+        margin-bottom: 0 !important;
+    }
+    
+    .miccai-logo-img {
+        height: 50px !important;
+    }
+    
+    .mobile-menu-toggle {
+        font-size: 28px !important;
+        padding: 10px 15px !important;
+        display: none !important;
+    }
+    
+    .main-nav ul {
+        padding: 0 !important;
+        top: auto !important;
+        gap: 2rem !important;
+        flex-direction: row !important;
+    }
+    
+    .main-nav ul li a {
+        padding: 8px 0 !important;
+        font-size: 14px !important;
+        display: inline !important;
+    }
+    
+    .secondary-nav ul {
+        padding: var(--spacing-sm) 0 !important;
+        gap: 2rem !important;
+        flex-direction: row !important;
+    }
+    
+    .secondary-nav ul li a {
+        font-size: 13px !important;
+        padding: 8px 0 !important;
+        display: inline !important;
+    }
+}

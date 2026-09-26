@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">MAMA Breastmark Logo</title>
+  <desc id="desc">A fully filled outer circle containing two filled vertical semicircles facing each other and touching at one point.</desc>
+
+  <defs>
+    <linearGradient id="outerFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#032a5c"/>
+      <stop offset="42%" stop-color="#6b35e6"/>
+      <stop offset="100%" stop-color="#e6219e"/>
+    </linearGradient>
+    <linearGradient id="leftBreastFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd6ef"/>
+      <stop offset="55%" stop-color="#ff7bcd"/>
+      <stop offset="100%" stop-color="#e034a4"/>
+    </linearGradient>
+    <linearGradient id="rightBreastFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f05ac0"/>
+      <stop offset="55%" stop-color="#d21b93"/>
+      <stop offset="100%" stop-color="#9b0067"/>
+    </linearGradient>
+    <radialGradient id="popHighlight" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="128" cy="128" r="104" fill="url(#outerFill)"/>
+  <circle cx="128" cy="128" r="104" fill="url(#popHighlight)"/>
+
+  <path d="M70 70 L70 186 A58 58 0 0 0 70 70 Z" fill="url(#leftBreastFill)"/>
+  <path d="M186 70 L186 186 A58 58 0 0 1 186 70 Z" fill="url(#rightBreastFill)"/>
+</svg>

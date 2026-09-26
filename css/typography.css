@@ -1,0 +1,196 @@
+/**
+ * Typography Styles - MAMA-MIA Style
+ * All font and text-related styles
+ */
+
+/* Base HTML font size */
+html {
+    font-size: 125%;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    background-color: var(--color-dark-gray);
+    font-weight: 400;
+}
+
+/* Headings - MAMA-MIA Style */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    font-family: var(--font-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: var(--color-white);
+}
+
+h1 {
+    font-size: 48px;
+    font-size: 2.4rem;
+    line-height: 1.0em;
+}
+
+h2 {
+    font-size: 38px;
+    font-size: 1.9rem;
+    line-height: 1.2em;
+}
+
+h3 {
+    font-size: 30px;
+    font-size: 1.5rem;
+    line-height: 1.2em;
+}
+
+h4 {
+    font-size: 24px;
+    font-size: 1.2rem;
+    line-height: 38px;
+    text-transform: uppercase;
+}
+
+h5 {
+    font-size: 21px;
+    font-size: 1.05rem;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+h6 {
+    font-size: 17px;
+    font-size: 0.85rem;
+    line-height: 21px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+/* Links - MAMA-MIA Style */
+a {
+    text-decoration: none;
+    color: var(--color-white);
+    transition: color var(--transition-fast);
+}
+
+a:hover,
+a:focus {
+    color: var(--accent-hover);
+}
+
+/* Selection */
+::selection {
+    background-color: var(--primary-coral);
+    color: var(--color-black);
+}
+
+/* Strong/Bold text */
+strong {
+    color: var(--color-cream);
+    font-weight: 700;
+}
+
+/* List markers */
+ul li::marker {
+    color: var(--primary-coral);
+}
+
+/* Text utilities */
+.text-center {
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-highlight {
+    color: var(--color-coral);
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+    html {
+        font-size: 118%;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.55rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    h4 {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 110%;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    h3 {
+        font-size: 1.15rem;
+    }
+    
+    h4 {
+        font-size: 0.95rem;
+    }
+    
+    p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 105%;
+    }
+    
+    body {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    h3 {
+        font-size: 1.05rem;
+    }
+    
+    h4 {
+        font-size: 0.9rem;
+    }
+}
