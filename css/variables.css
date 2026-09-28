@@ -1,0 +1,47 @@
+/**
+ * CSS Variables - MAMA-SYNTH Challenge
+ * Centralized configuration for colors, spacing, typography
+ */
+
+:root {
+    /* Color Palette - Perfusion Demo Style (Magenta/Cyan/Navy) */
+    --primary-coral: #ed19ed;
+    --primary-coral-light: #00ffff;
+    --color-white: #ffffff;
+    --color-cream: #b0c4ff;
+    --color-dark-gray: #0a0e27;
+    --color-black: #000000;
+    --text-primary: rgba(255, 255, 255, 0.87);
+    --text-dark: #ffffff;
+    --accent-color: #00ffff;
+    --accent-hover: #00ffff;
+    --background-gray: #0a0e27;
+    --mid-gray: #1a1f3a;
+
+    
+    
+    /* Typography */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-nav: 'Montserrat', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 10px;
+    --spacing-sm: 15px;
+    --spacing-md: 30px;
+    --spacing-lg: 50px;
+    --spacing-xl: 100px;
+    
+    /* Layout */
+    --container-max-width: 1100px;
+    --border-radius-sm: 2px;
+    --border-radius-full: 50%;
+    
+    /* Transitions */
+    --transition-fast: 0.2s;
+    --transition-medium: 0.3s;
+    
+    /* Borders */
+    --border-width: 4px;
+    --border-color-primary: var(--color-terracotta);
+    --border-color-secondary: #333;
+}

@@ -1,0 +1,256 @@
+/**
+ * Responsive Enhancements
+ * Additional media query rules for inline styles and components
+ */
+
+/* Mobile-friendly adjustments for inline styles */
+
+/* Tablet screens (768px and below) */
+@media (max-width: 768px) {
+    /* Scale down "Why?" heading inline styles */
+    [style*="font-size: 1.2rem"] {
+        font-size: 1rem !important;
+    }
+    
+    /* Adjust card container grid */
+    [style*="display: grid; grid-template-columns: repeat(auto-fit"]  {
+        gap: 1.5rem !important;
+    }
+    
+    /* Scale Gd keyboard key visual */
+    [style*="width: 140px; height: 140px"] {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    /* Adjust font size for Gd text */
+    [style*="font-size: 3.5rem"] {
+        font-size: 2.8rem !important;
+    }
+    
+    /* Adjust training dataset grid */
+    [style*="grid-template-columns: repeat(auto-fit, minmax(280px"] {
+        gap: 1.5rem !important;
+    }
+    
+    /* Image comparison section */
+    [style*="flex: 1; min-width: 300px"] {
+        min-width: 250px !important;
+    }
+    
+    /* Reduce arrow size on tablet */
+    [style*="font-size: 5rem; background: linear-gradient"] {
+        font-size: 3rem !important;
+        margin: 0 !important;
+    }
+}
+
+/* Mobile screens (600px and below) */
+@media (max-width: 600px) {
+    /* Further scale down heading */
+    [style*="font-size: 1.2rem; margin-bottom: 2rem"] {
+        font-size: 0.95rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Stack cards vertically on mobile */
+    [style*="display: grid; grid-template-columns: repeat(auto-fit"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Scale down Gd keyboard key further */
+    [style*="width: 140px; height: 140px"] {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    /* Reduce Gd font size */
+    [style*="font-size: 3.5rem; color: #ffffff"] {
+        font-size: 2.2rem !important;
+    }
+    
+    /* Adjust h4 styles in cards */
+    [style*="color: #00ffff; font-size: 1.1rem"] {
+        font-size: 1rem !important;
+    }
+    
+    /* Reduce padding in info boxes */
+    [style*="padding: 1.5rem"] {
+        padding: 1rem !important;
+    }
+    
+    /* Adjust image comparison */
+    [style*="flex: 1; min-width: 300px"] {
+        min-width: 100% !important;
+        margin-bottom: 1rem;
+    }
+    
+    /* Hide arrow or reduce size significantly */
+    [style*="font-size: 5rem"] {
+        font-size: 2rem !important;
+        margin: 0.5rem !important;
+    }
+    
+    /* Responsive training dataset cards */
+    [style*="grid-template-columns: repeat(auto-fit, minmax(280px"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Adjust card padding */
+    [style*="padding: 1.5rem"] {
+        padding: 1rem !important;
+    }
+}
+
+/* Extra small screens (480px and below) */
+@media (max-width: 480px) {
+    /* Minimal spacing everywhere */
+    [style*="margin-bottom: 2rem"] {
+        margin-bottom: 1rem !important;
+    }
+    
+    [style*="margin-top: 2rem"] {
+        margin-top: 1rem !important;
+    }
+    
+    [style*="gap: 2rem"] {
+        gap: 1rem !important;
+    }
+    
+    [style*="gap: 1.5rem"] {
+        gap: 0.75rem !important;
+    }
+    
+    /* Very small Gd key */
+    [style*="width: 140px; height: 140px"] {
+        width: 85px !important;
+        height: 85px !important;
+    }
+    
+    /* Scale down Gd text for very small screens */
+    [style*="font-size: 3.5rem"] {
+        font-size: 1.8rem !important;
+    }
+    
+    /* Reduce superscript size */
+    [style*="font-size: 0.8rem; color: #ffffff"] {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Adjust gadolinium label */
+    [style*="font-size: 0.65rem"] {
+        font-size: 0.55rem !important;
+    }
+    
+    /* Scale card headings */
+    [style*="color: #00ffff; font-size: 1.1rem"] {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Reduce padding further */
+    [style*="padding: 1.5rem"] {
+        padding: 0.75rem !important;
+    }
+    
+    /* Make images stack better */
+    [style*="display: flex; gap: 1rem"] {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+    
+    /* Hide arrow symbol on very small screens */
+    [style*="font-size: 5rem; background: linear-gradient"] {
+        display: none;
+    }
+    
+    /* Adjust image max-width for mobile */
+    img[style*="max-width: 350px"] {
+        max-width: 100% !important;
+    }
+    
+    img[style*="max-width: 416px"] {
+        max-width: 100% !important;
+    }
+    
+    /* Responsive label text */
+    p[style*="color: #00ffff"] {
+        font-size: 0.85rem !important;
+    }
+}
+
+/* Specific component adjustments */
+
+/* Floating text styling in Gd key */
+[style*="position: absolute; top: 8px"] {
+    top: 6px !important;
+    left: 8px !important;
+}
+
+/* Info box borders - ensure they work on all sizes */
+[style*="border-left: 3px solid"] {
+    border-left-width: 3px !important;
+    margin-left: 0;
+}
+
+/* Timeline table responsiveness */
+.timeline-table {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .timeline-table {
+        font-size: 13px;
+    }
+    
+    .timeline-date,
+    .timeline-desc,
+    .timeline-countdown {
+        padding: 10px 8px !important;
+    }
+    
+    .timeline-date {
+        font-weight: 700;
+        min-width: 70px;
+    }
+    
+    .timeline-desc {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-table {
+        font-size: 11px;
+    }
+    
+    .timeline-table td {
+        padding: 8px 6px !important;
+    }
+    
+    .timeline-date {
+        min-width: 60px;
+    }
+    
+    .timeline-countdown {
+        display: none;
+    }
+}
+
+/* Evaluation blocks */
+.eval-block {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .eval-block {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eval-block {
+        min-height: 200px;
+    }
+}

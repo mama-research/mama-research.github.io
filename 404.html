@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page moved | MAMA-SYNTH</title>
+<meta name="robots" content="noindex">
+<script>
+  // Visitors arriving from the old www.ub.edu/mama-synth/ site may have an
+  // outdated 301 cached in their browser that keeps the /mama-synth/ path
+  // segment. Browsers never re-ask the server for a cached 301, so this is
+  // the only place we can catch them. Strip the stale segment and retry.
+  (function () {
+    var stale = '/mama-synth/';
+    var path = window.location.pathname;
+    if (path.indexOf(stale) === 0) {
+      var fixed = '/' + path.slice(stale.length) + window.location.search + window.location.hash;
+      window.location.replace(fixed);
+    }
+  })();
+</script>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: #0a0e27;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Montserrat', -apple-system, 'Segoe UI', sans-serif;
+    text-align: center;
+  }
+  .wrap { max-width: 540px; }
+  h1 { margin: 0 0 1rem; font-size: 1.6rem; color: #00ffff; letter-spacing: 1px; }
+  p { margin: 0 0 1.5rem; line-height: 1.7; color: rgba(255, 255, 255, 0.7); }
+  a.cta {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ca23ca, #00ffff);
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  a.alt { color: #00ffff; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>This page has moved</h1>
+    <p>
+      The MAMA-SYNTH site now lives at
+      <a class="alt" href="https://mama-research.github.io/">mama-research.github.io</a>.
+      If you followed a link from the old <code>ub.edu/mama-synth</code> address,
+      your browser may have cached an outdated redirect.
+    </p>
+    <p><a class="cta" href="/">Go to the MAMA-SYNTH site</a></p>
+    <p><a class="alt" href="/mama-synth.html">Challenge page</a></p>
+  </div>
+</body>
+</html>

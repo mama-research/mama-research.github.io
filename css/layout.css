@@ -1,0 +1,190 @@
+/**
+ * Layout Styles
+ * Grid, flexbox, and structural layout components
+ */
+
+/* Base Layout - MAMA-MIA Style with Gradient */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* Container */
+.section-wrapper {
+    width: 100%;
+    padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.content-limit {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+/* Background variations with gradients */
+.bg-dark {
+    background: transparent;
+}
+
+.bg-alt {
+    background: transparent;
+}
+
+.bg-light {
+    background: transparent;
+}
+/* Grid layouts */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: 20px;
+}
+
+.logo-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Hero logo row - compact spacing */
+.hero .logo-row {
+    justify-content: center;
+    margin: 30px !important;}
+
+
+.hero .logo-row img {
+    margin: 0 10px;
+}
+
+/* Responsive utilities */
+@media (max-width: 1024px) {
+    .section-wrapper {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .logo-row {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-wrapper {
+        padding: var(--spacing-lg) 20px;
+    }
+    
+    h1 {
+        font-size: 48px;
+        letter-spacing: 3px;
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+    
+    h3 {
+        font-size: 1.15rem;
+    }
+    
+    h4 {
+        font-size: 1rem;
+    }
+    
+    /* Responsive text scaling */
+    p {
+        font-size: 15px;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .logo-row {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .section-wrapper {
+        padding: var(--spacing-md) 16px;
+    }
+    
+    h1 {
+        font-size: 40px;
+        letter-spacing: 2px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 1.05rem;
+    }
+    
+    h4 {
+        font-size: 0.95rem;
+    }
+    
+    p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .logo-row {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-wrapper {
+        padding: var(--spacing-md) 12px;
+    }
+    
+    h1 {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        padding-left: 0;
+    }
+    
+    h3 {
+        font-size: 0.95rem;
+    }
+    
+    h4 {
+        font-size: 0.9rem;
+    }
+    
+    p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .logo-row {
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    .inst-logo {
+        max-height: 50px;
+    }
+}
